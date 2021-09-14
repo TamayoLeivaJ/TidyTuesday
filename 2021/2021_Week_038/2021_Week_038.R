@@ -46,7 +46,7 @@ constructor_teams <- c("Ferrari", "McLaren", "Mercedes", "Red Bull", "Williams")
 
 #### Text ####
 annotation_title_text <- c("Who are the Formula One constructor with more consecutive World Championship victories?")
-annotation_subtitle_text <- c("The Constructors' Championship was not awarded until 1958. Since then, five constructors' teams have won three or more consecutive world championships.")
+annotation_subtitle_text <- c("The Constructors' Championship was not awarded until 1958. Since then, \nfive constructors' teams have won three or more world championships.")
 
 #### Images ####
 ##### Team Logo #####
