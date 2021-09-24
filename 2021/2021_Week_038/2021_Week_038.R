@@ -51,7 +51,7 @@ billboard_song_longest_1 <- billboard_audio_features %>%
 
 
 #### Text ####
-annotation_title_text <- c("Billboard Top 100")
+annotation_title_text <- c("BILLBOARD THE HOTEST 100")
 annotation_subtitle_text <- c("Songs that have been #1 for the longest time")
 
 #### Images ####
@@ -63,9 +63,9 @@ annotation_subtitle_text <- c("Songs that have been #1 for the longest time")
 #### Plot aesthetics ####
 background  <- c("#1E212F")
 lines_color <- c("#0AD89D")
-title_color <- c("#FEC803")
+title_color <- c("#FFFFFF")
 subtitle_color <- c("#FEC803")
-text_color  <- c("#F28705")
+text_color  <- c("#FEC803")
 caption_color  <- c("#4E4D73")
 
 #### Plot ####
@@ -74,7 +74,7 @@ billboard_song_longest_1 %>%
      ### Layers base ###
      ggplot(aes(x = Counter_weeks, y = year_id, color = as.character(energy))) + 
      geom_jitter(size = 3, height = 0.5, width = 0.5, alpha = 0.50) + 
-     with_outer_glow(geom_point(data = billboard_song_longest_1 %>% filter(Counter_weeks >= 13), size = 4, alpha = 0.75), colour = "#3D4675", sigma = 5, expand = 5) +
+     with_outer_glow(geom_point(data = billboard_song_longest_1 %>% filter(Counter_weeks >= 13), size = 4, alpha = 0.75), colour = "#3D4675", sigma = 2, expand = 5) +
      ### Annotations ###
      ### Clusters Annotations ###
      #geom_mark_ellipse(aes(label = "(1975–1977)", filter = constructor_name %in% constructor_teams[1] & between(year, 1975, 1977)), label.fill = "transparent", color = constructor_color[1], label.colour = constructor_color[1], con.colour = constructor_color[1], label.buffer = unit(50, 'mm'), expand = unit(2.0, "mm")) +
@@ -83,8 +83,8 @@ billboard_song_longest_1 %>%
      ### image Annotations ###
      #annotation_custom(rasterGrob(image = img_Formula1_logo, width = 0.15, x = 0.05, y = -0.1)) +
      ### Scales ###
-     scale_y_continuous(limits = c(1966,2021), breaks = seq(1970, 2020, 10)) +
-     scale_x_continuous(expand = c(0, 1), breaks = c(seq(1, 13, 4),16,19), limits = c(0, 22)) +
+     scale_y_continuous(limits = c(1965,2022), breaks = seq(1970, 2020, 10)) +
+     scale_x_continuous(expand = c(0, 1), breaks = c(seq(1, 13, 4), 16, 19), limits = c(0, 25)) +
      scale_color_manual(values = viridis::inferno(n = length(unique(billboard_song_longest_1$energy)), begin = 0.4, end = 0.9, direction = 1)) +
      coord_cartesian(expand = TRUE, clip = "off") +
      ### Guides ###
@@ -94,10 +94,10 @@ billboard_song_longest_1 %>%
      theme(
        ## Text ##
        ## Axis ##
-       axis.title.x = element_text(face = "plain", color = text_color, size = 12, hjust = 0.5, vjust = 0.5, angle = 0),
-       axis.title.y = element_text(face = "plain", color = text_color, size = 12, hjust = 0.5, vjust = 0.5, angle = 90, margin = margin(t = 0, r = 10, b = 0, l = 0)),
-       axis.text.x = element_text(face = "plain", color = text_color, size = 12, hjust = 0.5, vjust = 0.5, angle = 0),
-       axis.text.y = element_text(face = "plain", color = text_color, size = 12, hjust = 0.5, vjust = 0.5, angle = 0),
+       axis.title.x = element_text(face = "plain", family = "Basique", color = text_color, size = 12, hjust = 0.5, vjust = 0.5, angle = 0, margin = margin(t = 10, r = 0, b = 10, l = 0)),
+       axis.title.y = element_text(face = "plain", color = text_color, size = 12, hjust = 0.5, vjust = 0.5, angle = 90),
+       axis.text.x = element_text(face = "plain", family = "Basique", color = text_color, size = 12, hjust = 0.5, vjust = 0.5, angle = 0),
+       axis.text.y = element_text(face = "plain", family = "Basique", color = text_color, size = 12, hjust = 0.5, vjust = 0.5, angle = 0),
        axis.line.x = element_line(colour = "transparent"),
        axis.ticks.x = element_line(colour = lines_color),
        axis.line.y = element_line(colour = "transparent"),
@@ -112,15 +112,15 @@ billboard_song_longest_1 %>%
        legend.position = "none",
        ## Titles & Caption ##
        plot.title.position = "plot",
-       plot.title = element_markdown(color = title_color, family = "Avenir", face = "bold"),
-       plot.subtitle = element_markdown(color = title_color, family = "Avenir", face = "plain"),
+       plot.title = element_markdown(color = title_color, family = "Basique", face = "bold", size = 16),
+       plot.subtitle = element_markdown(color = subtitle_color, family = "Basique", face = "plain", size = 14),
        plot.caption = element_markdown(color = caption_color, family = "Menlo", hjust = 1, halign = 0.5),
        ## Margin ##
        plot.margin = margin(t = 0.5, r = 0.5, b = 0.5, l = 0.5, unit = "cm")) +
      ### Labels ###
      labs(title = annotation_title_text,
           subtitle = annotation_subtitle_text,
-          x = "Consecutive Weeks as #1",
+          x = "Consecutive Weeks",
           y = NULL,
           caption = "<span style='font-family: \"Font Awesome 5 Brands\"'>&#xf099;</span> @TamayoLeiva_J<br>
                      <span style='font-family: \"Font Awesome 5 Brands\"'>&#xf09b;</span> TamayoLeivaJ<br><br> 
