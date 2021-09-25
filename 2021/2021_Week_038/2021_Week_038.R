@@ -47,12 +47,15 @@ billboard_song_longest_1 <- billboard_audio_features %>%
                             slice_min(peak_position, n = 1, with_ties = FALSE) %>% 
                             filter(peak_position <= 1)
    
-#### Annotation List ####
-
+#### Annotation ####
+Label <- tibble(x = seq(20, 26, length.out = 10),
+                y = rep(1975, 10),
+                color = seq(min(billboard_song_longest_1$energy, na.rm = TRUE), 
+                            max(billboard_song_longest_1$energy, na.rm = TRUE), length.out = 10))
 
 #### Text ####
-annotation_title_text <- c("BILLBOARD THE HOTEST 100")
-annotation_subtitle_text <- c("Songs that have been #1 for the longest time")
+annotation_title_text <- c("BILLBOARD HOTEST TOP 100")
+annotation_subtitle_text <- c("Which songs have have been #1 for the longest time?")
 
 #### Images ####
 ##### Team Logo #####
@@ -76,17 +79,34 @@ billboard_song_longest_1 %>%
      geom_jitter(size = 3, height = 0.5, width = 0.5, alpha = 0.50) + 
      with_outer_glow(geom_point(data = billboard_song_longest_1 %>% filter(Counter_weeks >= 13), size = 4, alpha = 0.75), colour = "#3D4675", sigma = 2, expand = 5) +
      ### Annotations ###
-     ### Clusters Annotations ###
-     #geom_mark_ellipse(aes(label = "(1975–1977)", filter = constructor_name %in% constructor_teams[1] & between(year, 1975, 1977)), label.fill = "transparent", color = constructor_color[1], label.colour = constructor_color[1], con.colour = constructor_color[1], label.buffer = unit(50, 'mm'), expand = unit(2.0, "mm")) +
-     ### Layers extra ###
-     #geom_point(data = race_won_const_year %>% filter(constructor_name %in% constructor_teams[1] & between(year, 1999, 2004)), aes(x = year, y = constructor_points, fill = constructor_name), size = 3, shape = 21) +
+     ### Labels Annotations ###
+     #annotate(geom = "curve", x = 21.5, y = 2021, xend = 19, yend = 2020, curvature = .2, color = "#932667FF", arrow = arrow(length = unit(0.05, "inches"))) +
+     annotate(geom = "text", x = 24.0, y = 2019, color = "#EF6E21FF", label = "Old Town Road · Lil Nas X", family = "Basique") +
+     annotate(geom = "text", x = 23.5, y = 2017, color = "#FC9F07FF", label = "Despacito · Luis Fonsi & Daddy Yankee", family = "Basique") +
+     annotate(geom = "text", x = 24.5, y = 1996, color = "#7A7A7DFF", label = "One Sweet Day · Mariah Carey & Boyz II Men", family = "Basique") +
+     annotate(geom = "text", x = 20.5, y = 1998, color = "#7A7A7DFF", label = "Candle In The Wind · Elton John", family = "Basique") +
+     annotate(geom = "text", x = 21.0, y = 2009, color = "#F8850FFF", label = "I Gotta Feeling · The Black Eyed Peas", family = "Basique") +
+     annotate(geom = "text", x = 22.0, y = 1993, color = "#A92E5EFF", label = "I Will Always Love You · Whitney Houston", family = "Basique") +
+     annotate(geom = "text", x = 20.5, y = 1994, color = "#E35833FF", label = "I'll Make Love To You · Boyz II Men", family = "Basique") +
+     annotate(geom = "text", x = 20.5, y = 1997, color = "#7A7A7DFF", label = "Macarena · Los Del Rio", family = "Basique") +
+     annotate(geom = "curve", x = 16.5, y = 1997, xend = 14.5, yend = 1996.5, curvature = +.1, color = "#7A7A7DFF", arrow = arrow(length = unit(0.05, "inches"))) +
+     annotate(geom = "text", x = 22.0, y = 2015, color = "#EF6E21FF", label = "Uptown Funk! · Mark Ronson & Bruno Mars", family = "Basique") +
+     annotate(geom = "text", x = 23.5, y = 1992, color = "#7A7A7DFF", label = "End Of The Road (From 'Boomerang') · Boyz II Men", family = "Basique") +
+     annotate(geom = "text", x = 22.0, y = 2000, color = "#F8850FFF", label = "The Boy Is Mine · Brandy & Monica", family = "Basique") +
+     annotate(geom = "curve", x = 16.0, y = 2000, xend = 13.5, yend = 1998.5, curvature = +.2, color = "#F8850FFF", arrow = arrow(length = unit(0.05, "inches"))) +
+     ### Color Scale Annotations ###
+     geom_point(data = Label, aes(x = x, y = y, color = as.character(color)), size = 4.5, alpha = 0.50) +
+     annotate(geom = "curve", x = 18.5, y = 1973, xend = 19.5, yend = 1975, curvature = -.4, color = "#932667FF", arrow = arrow(length = unit(0.05, "inches"))) +
+     annotate(geom = "text", x = 18.5, y = 1972, color = "#932667FF", label = "Less energy", family = "Basique") +
+     annotate(geom = "curve", x = 27.5, y = 1977, xend = 26.5, yend = 1975, curvature = -.4, color = "#F6D645FF", arrow = arrow(length = unit(0.05, "inches"))) +
+     annotate(geom = "text", x = 27.5, y = 1978, color = "#F6D645FF", label = "More energy", family = "Basique") +
      ### image Annotations ###
      #annotation_custom(rasterGrob(image = img_Formula1_logo, width = 0.15, x = 0.05, y = -0.1)) +
      ### Scales ###
-     scale_y_continuous(limits = c(1965,2022), breaks = seq(1970, 2020, 10)) +
-     scale_x_continuous(expand = c(0, 1), breaks = c(seq(1, 13, 4), 16, 19), limits = c(0, 25)) +
-     scale_color_manual(values = viridis::inferno(n = length(unique(billboard_song_longest_1$energy)), begin = 0.4, end = 0.9, direction = 1)) +
-     coord_cartesian(expand = TRUE, clip = "off") +
+     scale_y_continuous(limits = c(1966,2021), breaks = seq(1970, 2020, 10)) +
+     scale_x_continuous(expand = c(0, 1), breaks = c(seq(1, 13, 4), 16, 19), limits = c(0, 32)) +
+     scale_color_manual(values = viridis::inferno(n = length(unique(c(billboard_song_longest_1$energy, Label$color))), begin = 0.4, end = 0.9, direction = 1)) +
+     coord_cartesian(expand = TRUE, clip = "on") +
      ### Guides ###
      #guides(color = guide_legend(title.position = "top", override.aes = list(size = 4)), order=2) +
      ### Theme ###
