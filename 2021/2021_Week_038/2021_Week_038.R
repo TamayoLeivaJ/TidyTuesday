@@ -57,12 +57,6 @@ Label <- tibble(x = seq(20, 26, length.out = 10),
 annotation_title_text <- c("BILLBOARD HOTEST TOP 100")
 annotation_subtitle_text <- c("Which songs have have been #1 for the longest time?")
 
-#### Images ####
-##### Team Logo #####
-
-
-##### Team Cars #####
-
 #### Plot aesthetics ####
 background  <- c("#1E212F")
 lines_color <- c("#0AD89D")
@@ -80,7 +74,6 @@ billboard_song_longest_1 %>%
      with_outer_glow(geom_point(data = billboard_song_longest_1 %>% filter(Counter_weeks >= 13), size = 4, alpha = 0.75), colour = "#3D4675", sigma = 2, expand = 5) +
      ### Annotations ###
      ### Labels Annotations ###
-     #annotate(geom = "curve", x = 21.5, y = 2021, xend = 19, yend = 2020, curvature = .2, color = "#932667FF", arrow = arrow(length = unit(0.05, "inches"))) +
      annotate(geom = "text", x = 24.0, y = 2019, color = "#EF6E21FF", label = "Old Town Road · Lil Nas X", family = "Basique") +
      annotate(geom = "text", x = 23.5, y = 2017, color = "#FC9F07FF", label = "Despacito · Luis Fonsi & Daddy Yankee", family = "Basique") +
      annotate(geom = "text", x = 24.5, y = 1996, color = "#7A7A7DFF", label = "One Sweet Day · Mariah Carey & Boyz II Men", family = "Basique") +
@@ -100,15 +93,11 @@ billboard_song_longest_1 %>%
      annotate(geom = "text", x = 18.5, y = 1972, color = "#932667FF", label = "Less energy", family = "Basique") +
      annotate(geom = "curve", x = 27.5, y = 1977, xend = 26.5, yend = 1975, curvature = -.4, color = "#F6D645FF", arrow = arrow(length = unit(0.05, "inches"))) +
      annotate(geom = "text", x = 27.5, y = 1978, color = "#F6D645FF", label = "More energy", family = "Basique") +
-     ### image Annotations ###
-     #annotation_custom(rasterGrob(image = img_Formula1_logo, width = 0.15, x = 0.05, y = -0.1)) +
      ### Scales ###
      scale_y_continuous(limits = c(1966,2021), breaks = seq(1970, 2020, 10)) +
      scale_x_continuous(expand = c(0, 1), breaks = c(seq(1, 13, 4), 16, 19), limits = c(0, 32)) +
      scale_color_manual(values = viridis::inferno(n = length(unique(c(billboard_song_longest_1$energy, Label$color))), begin = 0.4, end = 0.9, direction = 1)) +
      coord_cartesian(expand = TRUE, clip = "on") +
-     ### Guides ###
-     #guides(color = guide_legend(title.position = "top", override.aes = list(size = 4)), order=2) +
      ### Theme ###
      theme_classic() +
      theme(
