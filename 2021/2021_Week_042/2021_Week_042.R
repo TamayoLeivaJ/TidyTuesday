@@ -35,7 +35,7 @@ seafood_and_fish_prod_t_tonnes <- readr::read_csv('https://raw.githubusercontent
 }
 
 #### Data wrangling #### 
-##### The impact of COVID-19 on U.S. nurses
+##### The impact of global seafood production on biological sustainability.
 seafood_prod_th_tonnes <- seafood_and_fish_prod_t_tonnes %>% 
                           clean_names(case = "none") %>% 
                           rename_at(vars(starts_with("Commodity_Balances_Livestock_and_Fish_Primary_Equivalent_")), ~ str_remove_all(., pattern = "Commodity_Balances_Livestock_and_Fish_Primary_Equivalent_")) %>%
