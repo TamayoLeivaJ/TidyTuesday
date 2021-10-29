@@ -24,11 +24,11 @@ ultra_rankings <- readr::read_csv('https://raw.githubusercontent.com/rfordatasci
 race <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-10-26/race.csv')
 
 #### Data wrangling #### 
-##### ?
+##### Which are the most popular Ultra Trail Running events in the world?
 race_plot <- race %>% 
              mutate(country = if_else(country == "Hong Kong, China", "China", as.character(country)),
                     event = if_else(event == "Grand Raid De La Réunion", "Le Grand Raid De La Réunion", as.character(event))) %>% 
-             left_join(gapminder %>% select(country, continent), by = c("country")) %>%
+             left_join(gapminder %>% select(country, continent), by = c("country")) %>%        # We will use Gapminder dataset to extract countries continent information
              filter(participants != 0) %>% 
              arrange(desc(participants)) %>% 
              group_by(event) %>% 
@@ -53,7 +53,7 @@ angle <-  90 - 360 * (labels_barplot$possition -0.5)/nrow(labels_barplot)     # 
 labels_barplot$hjust <- if_else(angle < -90, 1, 0)                            # Labels alignment: right or left (If I am on the left part of the plot, my labels have currently an angle < -90)
 labels_barplot$angle <- if_else(angle < -90, angle + 180, angle)              # flip angle BY to make them readable
 
-# prepare a data frame for base lines
+# Prepare a data frame for base lines
 base_data <- race_plot %>% 
              filter(country %in% c("France", "China", "United States", "Spain")) %>% 
              group_by(country) %>% 
@@ -64,6 +64,7 @@ base_data <- race_plot %>%
                                           country %in% c("United States")~ "Americas",
                                           country %in% c("China")~ "Asia"))
 
+# Prepare a data frame for colors code
 colors_barplot <- tibble(continent = c("Europe", "Asia", "Americas"),
                                  x = c(35,2,11),
                                  y = rep(3000,3))
@@ -80,58 +81,58 @@ pallete_color  <- c("Europe" = "#8C3041", "Asia" = "#037994", "Americas" = "#60A
 #### Annotation ####
 annotation_title_text <- c("Popular Ultra Trail Running Events")
 annotation_subtitle_text <- c("If you are a trail running lover you should definitely travel to these four countries which concentrate some of the most popular races. And go to **Le Grand Raid de la Réunion**, which since 1989 take place at the Réunion island (departments of France), and has 168.1 km and 9610 m of elevation gain and is crowned as the most popular trail running race with up to 2900 participants in 2019")
-annotation_subtitle_text <- str_wrap(annotation_subtitle_text, 105) %>% str_replace_all("\n","<br>") 
+annotation_subtitle_text <- str_wrap(annotation_subtitle_text, 105) %>% str_replace_all("\n","<br>") # Helps to separate long texts into lines with the same maximum number of characters
 
 #### Plot ####
 Plot <- 
   race_plot %>%
   ### Layers base ###
   ggplot(aes(x = possition, y = max_participants, fill = continent)) + 
-  ### Geom Layers ###
-  geom_col() +
-  ### Annotations ###
-  ### Text Annotations ###
-  geom_text(data = labels_barplot, aes(x = possition, y = max_participants + 100, label = event, hjust = hjust), color = "black", family = "Alumni Sans", fontface = "bold", alpha = if_else(labels_barplot$max_participants >= 1000, 0.8, 0.6), size = if_else(labels_barplot$max_participants >= 1000, 4.0, 3.0), angle = labels_barplot$angle, inherit.aes = FALSE) +
-  geom_text(data = labels_barplot, aes(x = possition, y = max_participants - case_when(max_participants >= 1000 & max_participants < 2900 ~ 600, max_participants == 2900 ~ 2000, T ~ max_participants * 0.82), label = if_else(max_participants == 2900, paste0(max_participants, " Participants"), as.character(max_participants)), hjust = hjust), color = background, family = "Alumni Sans", fontface = "bold", alpha = if_else(labels_barplot$max_participants >= 1000, 0.8, 0.6), size = if_else(labels_barplot$max_participants >= 1000, 3.5, 2.5), angle = labels_barplot$angle, inherit.aes = FALSE) +
-  geom_text(data = colors_barplot, aes(x = x, y = y, label = continent, color = continent), hjust=c(2,0,0), family = "Alumni Sans", fontface = "bold", alpha = 0.8, size = 5.5, angle = 0, inherit.aes = FALSE) +
-  # Add base line information
-  geom_segment(data = base_data, aes(x = start, y = - 80, xend = end, yend = - 80, colour = continent), alpha = 0.8, size = 0.6 , inherit.aes = FALSE)  +
-  geom_text(data = base_data, aes(x = title, y = if_else(country == "United States", -1200, -600), label = country, colour = continent), alpha = 0.8, size = 5, family = "Alumni Sans", fontface = "bold", inherit.aes = FALSE) +
-  ### Scales ###
-  scale_y_continuous(limits = c(-3000, 3000)) +
-  scale_fill_manual(values = pallete_color) +
-  scale_color_manual(values = pallete_color) +
-  coord_polar(start = 0, clip = "off") +
-  ### Theme ### 
-  theme_classic() +
-  theme(
-    ## Text ##
-    text = element_text(face = "plain", family = "Alumni Sans", color = text_color, hjust = 0.5, vjust = 0.5, angle = 0),
-    ## Axis ##
-    axis.title.x = element_blank(),
-    axis.title.y = element_blank(),
-    axis.text.x = element_blank(),
-    axis.text.y = element_blank(),
-    axis.line.x = element_blank(),
-    axis.ticks.x = element_line(colour = lines_color),
-    axis.line.y = element_blank(),
-    axis.ticks.y = element_blank(),
-    ## Panel Grid ##
-    ## Plot Aesthetic ##
-    panel.background = element_rect(fill = background, color = NA),
-    plot.background = element_rect(fill = background, color = NA),
-    legend.background = element_rect(fill = background, color = NA),
-    legend.key = element_rect(fill = background, color = NA),
-    ## Legend ##
-    legend.position = "none",
-    ## Titles & Caption ##
-    plot.title.position = "plot",
-    plot.title = element_markdown(color = title_color, family = "Big Shoulders Stencil Text", face = "plain", size = 24),
-    plot.subtitle = element_markdown(color = subtitle_color, family = "Alumni Sans", face = "plain", size = 14),
-    plot.caption.position = "plot",
-    plot.caption = element_markdown(color = caption_color, family = "Menlo", hjust = 1, halign = 1, size = 7),
-    ## Margin ##
-    plot.margin = margin(t = 0.1, r = -1, b = -0.1, l = -1, unit = "cm")) +
+      ### Geom Layers ###
+      geom_col() +
+      ### Annotations ###
+      ### Text Annotations ###
+      geom_text(data = labels_barplot, aes(x = possition, y = max_participants + 100, label = event, hjust = hjust), color = "black", family = "Alumni Sans", fontface = "bold", alpha = if_else(labels_barplot$max_participants >= 1000, 0.8, 0.6), size = if_else(labels_barplot$max_participants >= 1000, 4.0, 3.0), angle = labels_barplot$angle, inherit.aes = FALSE) +
+      geom_text(data = labels_barplot, aes(x = possition, y = max_participants - case_when(max_participants >= 1000 & max_participants < 2900 ~ 600, max_participants == 2900 ~ 2000, T ~ max_participants * 0.82), label = if_else(max_participants == 2900, paste0(max_participants, " Participants"), as.character(max_participants)), hjust = hjust), color = background, family = "Alumni Sans", fontface = "bold", alpha = if_else(labels_barplot$max_participants >= 1000, 0.8, 0.6), size = if_else(labels_barplot$max_participants >= 1000, 3.5, 2.5), angle = labels_barplot$angle, inherit.aes = FALSE) +
+      geom_text(data = colors_barplot, aes(x = x, y = y, label = continent, color = continent), hjust=c(2,0,0), family = "Alumni Sans", fontface = "bold", alpha = 0.8, size = 5.5, angle = 0, inherit.aes = FALSE) +
+      # Add base line information
+      geom_segment(data = base_data, aes(x = start, y = - 80, xend = end, yend = - 80, colour = continent), alpha = 0.8, size = 0.6 , inherit.aes = FALSE)  +
+      geom_text(data = base_data, aes(x = title, y = if_else(country == "United States", -1200, -600), label = country, colour = continent), alpha = 0.8, size = 5, family = "Alumni Sans", fontface = "bold", inherit.aes = FALSE) +
+      ### Scales ###
+      scale_y_continuous(limits = c(-3000, 3000)) +
+      scale_fill_manual(values = pallete_color) +
+      scale_color_manual(values = pallete_color) +
+      coord_polar(start = 0, clip = "off") +
+      ### Theme ### 
+      theme_classic() +
+      theme(
+            ## Text ##
+            text = element_text(face = "plain", family = "Alumni Sans", color = text_color, hjust = 0.5, vjust = 0.5, angle = 0),
+            ## Axis ##
+            axis.title.x = element_blank(),
+            axis.title.y = element_blank(),
+            axis.text.x = element_blank(),
+            axis.text.y = element_blank(),
+            axis.line.x = element_blank(),
+            axis.ticks.x = element_blank(),
+            axis.line.y = element_blank(),
+            axis.ticks.y = element_blank(),
+            ## Panel Grid ##
+            ## Plot Aesthetic ##
+            panel.background = element_rect(fill = background, color = NA),
+            plot.background = element_rect(fill = background, color = NA),
+            legend.background = element_rect(fill = background, color = NA),
+            legend.key = element_rect(fill = background, color = NA),
+            ## Legend ##
+            legend.position = "none",
+            ## Titles & Caption ##
+            plot.title.position = "plot",
+            plot.title = element_markdown(color = title_color, family = "Big Shoulders Stencil Text", face = "plain", size = 24),
+            plot.subtitle = element_markdown(color = subtitle_color, family = "Alumni Sans", face = "plain", size = 14),
+            plot.caption.position = "plot",
+            plot.caption = element_markdown(color = caption_color, family = "Menlo", hjust = 1, halign = 1, size = 7),
+            ## Margin ##
+            plot.margin = margin(t = 0.1, r = -1, b = -0.1, l = -1, unit = "cm")) +      # It is complicated to manage the size of the plot, so we use negative values to enlarge the plot.
   ### Labels ###
   labs(title = annotation_title_text,
        subtitle = annotation_subtitle_text,
