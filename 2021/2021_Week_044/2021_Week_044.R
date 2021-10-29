@@ -92,14 +92,14 @@ Plot <-
       geom_col() +
       ### Annotations ###
       ### Text Annotations ###
-      geom_text(data = labels_barplot, aes(x = possition, y = max_participants + 100, label = event, hjust = hjust), color = "black", family = "Alumni Sans", fontface = "bold", alpha = if_else(labels_barplot$max_participants >= 1000, 0.8, 0.6), size = if_else(labels_barplot$max_participants >= 1000, 4.0, 3.0), angle = labels_barplot$angle, inherit.aes = FALSE) +
+      geom_text(data = labels_barplot, aes(x = possition, y = max_participants + 100, label = event, hjust = hjust), color = "black", family = "Alumni Sans", fontface = "bold", alpha = if_else(labels_barplot$max_participants >= 1000, 0.8, 0.6), size = if_else(labels_barplot$max_participants >= 1000, 4.0, 3.0), angle = labels_barplot$angle, inherit.aes = FALSE) +  # I use conditional statements within layers such as if_else() and case_when() to assign differential values of y-axis position, alpha, size and labels to each value based on conditions.
       geom_text(data = labels_barplot, aes(x = possition, y = max_participants - case_when(max_participants >= 1000 & max_participants < 2900 ~ 600, max_participants == 2900 ~ 2000, T ~ max_participants * 0.82), label = if_else(max_participants == 2900, paste0(max_participants, " Participants"), as.character(max_participants)), hjust = hjust), color = background, family = "Alumni Sans", fontface = "bold", alpha = if_else(labels_barplot$max_participants >= 1000, 0.8, 0.6), size = if_else(labels_barplot$max_participants >= 1000, 3.5, 2.5), angle = labels_barplot$angle, inherit.aes = FALSE) +
       geom_text(data = colors_barplot, aes(x = x, y = y, label = continent, color = continent), hjust=c(2,0,0), family = "Alumni Sans", fontface = "bold", alpha = 0.8, size = 5.5, angle = 0, inherit.aes = FALSE) +
       # Add base line information
       geom_segment(data = base_data, aes(x = start, y = - 80, xend = end, yend = - 80, colour = continent), alpha = 0.8, size = 0.6 , inherit.aes = FALSE)  +
       geom_text(data = base_data, aes(x = title, y = if_else(country == "United States", -1200, -600), label = country, colour = continent), alpha = 0.8, size = 5, family = "Alumni Sans", fontface = "bold", inherit.aes = FALSE) +
       ### Scales ###
-      scale_y_continuous(limits = c(-3000, 3000)) +
+      scale_y_continuous(limits = c(-3000, 3000)) +       # The  negative value control the size of the internal circle
       scale_fill_manual(values = pallete_color) +
       scale_color_manual(values = pallete_color) +
       coord_polar(start = 0, clip = "off") +
