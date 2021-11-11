@@ -45,3 +45,9 @@ Contributions to the #TidyTuesday
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_044/Plots/2021_Week_044.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_044/Plots/2021_Week_044.png)
 
 [R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_044/2021_Week_044.R)
+
+### Week 046
+#### Learning with afrilearndata :earth_africa:
+![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_046/Plots/2021_Week_046.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_046/Plots/2021_Week_046.png)
+
+[R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_046/2021_Week_046.R)
