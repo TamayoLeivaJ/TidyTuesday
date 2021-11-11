@@ -25,7 +25,7 @@ data(afripop2000)
 data(afripop2020)
 
 #### Data wrangling #### 
-##### Which are the most popular Ultra Trail Running events in the world?
+##### How is population density increasing in Africa?
 africa_2000 <- afripop2000 %>% 
                as.data.frame(xy=TRUE) %>% 
                rename("Pop" = "ppp_2000_1km_Aggregated") %>% 
