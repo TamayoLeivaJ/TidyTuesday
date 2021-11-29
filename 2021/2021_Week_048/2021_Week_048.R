@@ -62,7 +62,7 @@ caption_color  <- c("#EF9E0E")
 
 
 #### Annotation ####
-annotation_title_text <- c("Who is your favorite Doctor Who?")
+annotation_title_text <- c("Dr. Who is your favorite?")
 
 
 #### Plot ####
