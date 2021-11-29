@@ -75,16 +75,18 @@ Plot <- episodes %>%
         #### Add y-axis information
               geom_point(data = tibble(x = -2, y = seq(76, 91, 1)), aes(x, y), shape = "-", color = text_color, inherit.aes = FALSE) +
               geom_text(data = tibble(x = -4, y = seq(76, 91, length.out = 6)), aes(x, y, label = y), color = text_color, size = 2, family = "Neuropol", inherit.aes = FALSE) +
-              geom_text(data = tibble(x = -8, y = 83.5), aes(x, y), label = "Rating", color = text_color, size = 2.5, angle = 90, family = "Neuropol", inherit.aes = FALSE) +
+              geom_text(data = tibble(x = -7, y = 83.5), aes(x, y), label = "Rating", color = text_color, size = 2.0, angle = 90, family = "Neuropol", inherit.aes = FALSE) +
+              geom_point(data = tibble(x = 149, y = seq(76, 91, 1)), aes(x, y), shape = "-", color = caption_color, inherit.aes = FALSE) +
+              geom_text(data = tibble(x = 152, y = seq(76, 91, length.out = 6)), aes(x, y, label = y), color = caption_color, size = 2, family = "Neuropol", inherit.aes = FALSE) +
         ### Image Annotations ###
               geom_image(aes(x = doctor_image_label, y = 95, image = doctor_image), asp = 1.5)+
         ### Text Annotations ###
               geom_label(aes(x = season_label, y = 75, label = paste0("S", season_number), color = season_number), fill = background, size = 2.0, angle = 90, family = "Neuropol") + 
               geom_label(aes(x = doctor_label, y = 92, label = doctor_n, color = season_number), fill = background, size = 2.0, angle = 0, family = "Neuropol") +
-              annotate(geom = "segment", x = 148, y = 80.2, xend = 150, yend = 80.2, color = caption_color) +
-              geom_text(data = episodes %>% filter(season_number == 12), aes(154, rating_avg, color = season_number), label = "Season\nMean", size = 2.0, angle = 0, family = "Neuropol", hjust = 0.5) +
+              annotate(geom = "curve", x = 70, y = 80, xend = 91, yend = 83.33333, curvature = -.4, arrow = arrow(length = unit(0.2, "lines"), type = "closed"), color = "#5590A8") +
+              geom_text(data = tibble(x = 70, y = 79), aes(x, y), color = "#5590A8", label = "Middle line represent\nthe Season mean", size = 2.0, angle = 0, family = "Neuropol", hjust = 0.5, vjust = 0.5,inherit.aes = FALSE) +
         ### Scales ###
-        scale_x_continuous(limits = c(-8, 154)) +
+        scale_x_continuous(limits = c(-7, 152)) +
         scale_y_continuous(expand = c(0,0), limits = c(74, 98)) +       
         scale_color_manual(values = doctor_who$doctor_color) +
         coord_cartesian(expand = TRUE, clip = "on") +
