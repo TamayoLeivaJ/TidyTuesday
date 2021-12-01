@@ -1,130 +1,153 @@
-#### (TidyTuesday - 2021 - Week 48) #### 
+#### (TidyTuesday - 2021 - Week 49) #### 
 #### ----------------------------------------------------------------------------------------- ####
 ## Dr. Who
 ###  Week     Date	           Data	                    Source	                   Article
-###  - 48     - 2021-11-23	   - Dr. Who	              - datardis Pkg	           - R and Omics, datardis package
+###  - 49     - 2021-11-30	   - World Cup Cricket	    - ESPN Cricinfo	           - Wikipedia
 
 #### set up ####
 #### Libraries ####
 library(here)
 library(tidyverse, quietly = TRUE)
-library(tidytuesdayR)
 library(scales)
 library(ggtext)
 library(systemfonts)
+library(lubridate)
 library(png)
+library(ggfx)
 library(ggimage)
+library(patchwork)
 
 
 #### Directory ####
 # Create directory to save images and plots
-dir.create(here("2021/2021_Week_048/Images"), recursive = TRUE, mode = "0755")
-dir.create(here("2021/2021_Week_048/Plots"), recursive = TRUE, mode = "0755")
+dir.create(here("2021/2021_Week_049/Images"), recursive = TRUE, mode = "0755")
+dir.create(here("2021/2021_Week_049/Plots"), recursive = TRUE, mode = "0755")
 
 #### Read data ####
-episodes <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-11-23/episodes.csv')
+matches <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-11-30/matches.csv')
 
 
 #### Data wrangling #### 
-##### What is the average star rating of Doctor Who?
-doctor_who <- tibble(doctor = c("Christopher Eccleston", rep("David Tennant", 3), rep("Matt Smith", 3), rep("Peter Capaldi", 3), rep("Jodie Whittaker", 3)),
-                     doctor_n = c("The Ninth Doctor", rep("The Tenth Doctor", 3), rep("The Eleventh Doctor", 3), rep("The Twelfth Doctor", 3), rep("The Thirteenth Doctor", 3)),
-                     season_number = c(1,2:4,5:7,8:10,11:13),
-                     doctor_color = c("#DA4D40",rep("#518F4A", 3),rep("#F27979", 3),rep("#5590A8", 3),rep("#EF9E0E", 3))) 
+##### Top cricket countries and their streaks
+matches <- matches %>% 
+           mutate(match_date_str = str_replace(match_date, pattern = "(\\-[0-9]+\\,)", replacement = ","),  # Some dates are periods (e.g., January 8-9, 2000) so we look for the pattern "(\\-[0-9]+\\,)" and substitute "," for it (i.e., "-9," to ","). The "+" means that there may be one or more numbers within the pattern.                  
+                  match_date_str = parse_date_time(match_date_str, orders = c("mdy")),
+                  day = day(match_date_str),
+                  month = month(match_date_str),
+                  year = year(match_date_str)) %>% 
+           group_by(winner) %>% 
+           add_count(name = "total_wins") %>%
+           group_by(year, winner) %>% 
+           add_count(name = "annual_wins") %>% 
+           arrange(-annual_wins, -total_wins) %>% 
+           #mutate(year = as.factor(as.numeric(year))) %>% 
+           ungroup()
 
-episodes <- episodes %>% 
-            left_join(doctor_who, by = "season_number") %>% 
-            filter(type != "special" & !is.na(rating) & season_number < 13) %>% 
-            arrange(season_number, episode_number) %>% 
-            mutate(episode_id = row_number()) %>% 
-            group_by(season_number) %>% 
-            mutate(rating_avg = mean(rating),
-                   x = min(episode_id),
-                   xend = max(episode_id),
-                   season_label = min(episode_id) + (max(episode_id) - min(episode_id))/2) %>% 
-            group_by(doctor) %>%
-            mutate(doctor_label = min(episode_id) + (max(episode_id) - min(episode_id))/2,
-                   doctor_image_label = min(episode_id) + (max(episode_id) - min(episode_id))/2) %>% 
-            ungroup() %>% 
-            mutate(season_number = factor(season_number)) %>% 
-            mutate(doctor_image =  case_when(doctor_n == "The Ninth Doctor" ~ "./2021/2021_Week_048/Images/Doctor_Who_09.png",
-                                             doctor_n == "The Tenth Doctor" ~ "./2021/2021_Week_048/Images/Doctor_Who_10.png",
-                                             doctor_n == "The Eleventh Doctor" ~ "./2021/2021_Week_048/Images/Doctor_Who_11.png",
-                                             doctor_n == "The Twelfth Doctor" ~ "./2021/2021_Week_048/Images/Doctor_Who_12.png",
-                                             doctor_n == "The Thirteenth Doctor" ~ "./2021/2021_Week_048/Images/Doctor_Who_13.png"))
+countries <- matches %>%
+             select(winner, year, annual_wins, total_wins) %>% 
+             distinct() %>%
+             group_by(winner) %>% 
+             filter(n() == 10) %>% 
+             mutate(annual_wins_Levels = case_when(annual_wins >= 1 & annual_wins <= 10 ~ "1-10",
+                                                   annual_wins >= 11 & annual_wins <= 20 ~ "10-20",
+                                                   annual_wins >= 21 & annual_wins <= 30 ~ "20-30")) %>% 
+             ungroup() 
+
+countries <- countries %>%
+             bind_rows(tibble(winner = rep(sort(unique(countries$winner)),3),
+                              year = sort(rep(1993:1995,9)))) %>% 
+             mutate(img = "./2021/2021_Week_049/Images/cricket_bat.png")
+             
+
+#1993-2005
+
 
 #### Plot aesthetics ####
-background  <- c("#011126")
-lines_color <- c("#310F3E")
-title_color <- c("#F6F6F8")
-text_color  <- c("#DA4D40")
-caption_color  <- c("#EF9E0E")
+background  <- c("#91D9C4")
+lines_color <- c("#FFFFE0")
+title_color <- c("#2A2740")
+subtitle_color <- c("#2A2740")
+text_color  <- c("#2A2740")
+caption_color  <- c("#023373")
 
 
 #### Annotation ####
-annotation_title_text <- c("Dr. Who is your favorite?")
+annotation_title_text <- c("ICC Men's Cricket World Cup")
+annotation_subtitle_text <- c("Teams of the major cricket nations and their annual and total streaks from 1996 to 2005")
 
+#### Plot Annotation ####
+Plot_Annotation <- ggplot(tibble(x = 1, y = 1), aes(x=x, y=y)) +
+                   geom_point(color = lines_color, fill = "#46ACC8", shape = 21, size = 40) +
+                   geom_text(aes(x = 1, y = 1, label = "Total Wins\n1996-2005"), size = 5.2, color = lines_color, family = "Playball") +
+                   ggpubr::theme_transparent()
 
 #### Plot ####
-Plot <- episodes %>% 
-        ggplot(aes(episode_id, rating, group = season_number)) +
-              geom_point(aes(color = season_number)) +
-              geom_segment(aes(x = x - 0.2, xend = xend + 0.2, y = rating_avg, yend = rating_avg, color = season_number)) +
-              geom_segment(aes(x = episode_id, xend = episode_id, y = rating, yend = rating_avg, color = season_number)) +
+Plot <- countries %>% 
+        ggplot() +
+        geom_image(aes(x = 1997.8, y = 1, image = img), stat = "unique", size = 1.0, asp = 1.1) +
+        as_reference(geom_image(aes(x = 1997.8, y = 1, image = img), stat = "unique", size = 1.0, asp = 1.1), id = "bat") +
+        with_blend(geom_tile(aes(x = year, y = 0, width = 1, height = 11, fill = annual_wins_Levels)), bg_layer = "bat", blend_type = "in") +
         ### Annotations ###
-        #### Add y-axis information
-              geom_point(data = tibble(x = -2, y = seq(76, 91, 1)), aes(x, y), shape = "-", color = text_color, inherit.aes = FALSE) +
-              geom_text(data = tibble(x = -4, y = seq(76, 91, length.out = 6)), aes(x, y, label = y), color = text_color, size = 2, family = "Neuropol", inherit.aes = FALSE) +
-              geom_text(data = tibble(x = -7, y = 83.5), aes(x, y), label = "Rating", color = text_color, size = 2.0, angle = 90, family = "Neuropol", inherit.aes = FALSE) +
-              geom_point(data = tibble(x = 149, y = seq(76, 91, 1)), aes(x, y), shape = "-", color = caption_color, inherit.aes = FALSE) +
-              geom_text(data = tibble(x = 152, y = seq(76, 91, length.out = 6)), aes(x, y, label = y), color = caption_color, size = 2, family = "Neuropol", inherit.aes = FALSE) +
-        ### Image Annotations ###
-              geom_image(aes(x = doctor_image_label, y = 95, image = doctor_image), asp = 1.5)+
+        geom_point(aes(x = 2003.5, y = -3.5, size = total_wins), color = lines_color, fill = "#46ACC8", shape = 21) +
+        geom_text(aes(x = 2003.5, y = -3.5, label = total_wins), size = 3, color = lines_color) +
         ### Text Annotations ###
-              geom_label(aes(x = season_label, y = 75, label = paste0("S", season_number), color = season_number), fill = background, size = 2.0, angle = 90, family = "Neuropol") + 
-              geom_label(aes(x = doctor_label, y = 92, label = doctor_n, color = season_number), fill = background, size = 2.0, angle = 0, family = "Neuropol") +
-              annotate(geom = "curve", x = 70, y = 80, xend = 91, yend = 83.33333, curvature = -.4, arrow = arrow(length = unit(0.2, "lines"), type = "closed"), color = "#5590A8") +
-              geom_text(data = tibble(x = 70, y = 79), aes(x, y), color = "#5590A8", label = "Middle line represent\nthe Season mean", size = 2.0, angle = 0, family = "Neuropol", hjust = 0.5, vjust = 0.5,inherit.aes = FALSE) +
         ### Scales ###
-        scale_x_continuous(limits = c(-7, 152)) +
-        scale_y_continuous(expand = c(0,0), limits = c(74, 98)) +       
-        scale_color_manual(values = doctor_who$doctor_color) +
-        coord_cartesian(expand = TRUE, clip = "on") +
+        scale_size(range = c(8, 12), guide = "none") +
+        scale_x_continuous(limits = c(1992, 2006), breaks = c(1996, 1999, 2002, 2005)) +
+        scale_fill_manual(values = c("#E2D100", "#E58600","#B41921"), na.value = "black", breaks = c("1-10","10-20","20-30"), #colours = c("#F2B705","#F27405","#D95204")
+                          guide = guide_legend(keyheight = unit(1, "lines"), keywidth = unit(2, "lines"), show.limits = TRUE, title.position = "top", label.position = "bottom", title.hjust = 0.5, nrow = 1)) +
+        coord_cartesian(expand = TRUE, clip = "off") +
+        facet_wrap(~winner, ncol = 3) +
         ### Theme ### 
         theme_classic() +
         theme(
           ## Text ##
-          text = element_text(face = "plain", family = "Neuropol", color = text_color, hjust = 0.5, vjust = 0.5, angle = 0),
+          text = element_text(face = "plain", family = "Playball", color = text_color, hjust = 0.5, vjust = 0.5, angle = 0),
           ## Axis ##
           axis.title.x = element_blank(),
           axis.title.y = element_blank(),
-          axis.text.x = element_blank(),
           axis.text.y = element_blank(),
+          axis.text.x = element_text(size = 10, color = text_color),
           axis.line.x = element_blank(),
           axis.ticks.x = element_blank(),
           axis.line.y = element_blank(),
           axis.ticks.y = element_blank(),
           ## Panel Grid ##
+          panel.grid.major.x = element_line(size = 0.2, color = lines_color),
+          panel.spacing = unit(2, "lines"),
+          ## Strip ##
+          strip.background = element_rect(fill = background, color = NA),
+          strip.text = element_text(size = 24, color = text_color, family = "Playball"),
           ## Plot Aesthetic ##
           panel.background = element_rect(fill = background, color = NA),
           plot.background = element_rect(fill = background, color = NA),
           legend.background = element_rect(fill = background, color = NA),
           legend.key = element_rect(fill = background, color = NA),
+          legend.text = element_text(face = "plain", family = "Playball", color = text_color, hjust = 0.5, vjust = 0.5, angle = 0, size = 12),
+          legend.title = element_text(face = "plain", family = "Playball", color = text_color, hjust = 0.5, vjust = 0.5, angle = 0, size = 18),
           ## Legend ##
-          legend.position = "none",
+          legend.position = "top",
+          legend.direction = "horizontal",
           ## Titles & Caption ##
-          plot.title.position = "plot",
-          plot.title = element_markdown(color = title_color, family = "Doctor Who", face = "plain", size = 30),
+          plot.title.position = "panel",
+          plot.title = element_markdown(color = title_color, family = "Playball", face = "plain", size = 30, hjust = 0.5),
+          plot.subtitle = element_markdown(color = subtitle_color, family = "Playball", face = "plain", size = 14, hjust = 0.5),
           plot.caption.position = "plot",
-          plot.caption = element_markdown(color = caption_color, family = "Menlo", hjust = 1, halign = 1, size = 6),
+          plot.caption = element_markdown(color = caption_color, family = "Menlo", hjust = 1, halign = 1, size = 9, margin = margin(t = 1.0, r = 0.5, b = 0.1, l = 0.0, unit = "cm")),
           ## Margin ##
-          plot.margin = margin(t = 0.5, r = 0.5, b = 0.5, l = 0.5, unit = "cm")) +
+          plot.margin = margin(t = 0.5, r = 0.5, b = 0.5, l = 1.5, unit = "cm")) +
         ### Labels ###
-        labs(title = annotation_title_text,
+        labs(fill = "Annual Wins",
+             title = annotation_title_text,
+             subtitle = annotation_subtitle_text,
              caption = "<span style='font-family: \"Font Awesome 5 Brands\"'>&#xf099;</span> @TamayoLeiva_J<br>
                               <span style='font-family: \"Font Awesome 5 Brands\"'>&#xf09b;</span> TamayoLeivaJ<br><br> 
-                              Source: Dr. Who {datardis}<br>")
+                              Source: ESPN Cricinfo<br>")
 
+#### Final Plot ####
+Plot_F <- Plot + 
+          inset_element(Plot_Annotation, left = 0, bottom = 1, right = 0.3, top = 0.8, align_to = "full") + 
+          plot_annotation(theme = theme(plot.background = element_rect(fill = background, color = NA)))
 
 #### Progress ####
-ggsave("./2021/2021_Week_048/Plots/2021_Week_048.png", Plot, dpi = 320, scale = 1, width = 9, height = 6, units = c("in"))
+ggsave("./2021/2021_Week_049/Plots/2021_Week_049.png", Plot_F, dpi = 320, scale = 1, width = 12, height = 9, units = c("in"))
