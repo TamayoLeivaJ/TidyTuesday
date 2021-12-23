@@ -63,3 +63,9 @@ Contributions to the #TidyTuesday
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_049/Plots/2021_Week_049.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_049/Plots/2021_Week_049.png)
 
 [R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_049/2021_Week_049.R)
+
+### Week 052
+#### Starbucks drinks :coffee:
+![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_052/Plots/2021_Week_052.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_052/Plots/2021_Week_052.png)
+
+[R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_052/2021_Week_052.R)
