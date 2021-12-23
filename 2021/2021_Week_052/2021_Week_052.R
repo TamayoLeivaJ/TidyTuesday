@@ -21,6 +21,7 @@ library(MetBrewer)
 dir.create(here("2021/2021_Week_052/Images"), recursive = TRUE, mode = "0755")
 dir.create(here("2021/2021_Week_052/Plots"), recursive = TRUE, mode = "0755")
 
+
 #### Read data ####
 starbucks <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-12-21/starbucks.csv')
 
@@ -28,12 +29,14 @@ starbucks <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/
 #### Data wrangling #### 
 ##### Calories or Caffeine
 starbucks <- starbucks %>% 
-             filter(serv_size_m_l != 0 & size %in% c("short","tall","grande","venti","trenta")) %>%
-             filter(calories != 0 & caffeine_mg != 0) %>%
+             filter(serv_size_m_l != 0 & size %in% c("short","tall","grande","venti","trenta")) %>%  # Filter only popular sizes
+             filter(calories != 0 & caffeine_mg != 0) %>%                                            # Filter double zeros
              group_by(product_name, size, serv_size_m_l) %>% 
-             dplyr::slice_max(calories) %>% 
+             dplyr::slice_max(calories) %>%                                                          # Keeping the highest caloric value by product and size
              arrange(desc(serv_size_m_l)) %>% 
-             ungroup()
+             ungroup() %>% 
+             mutate(size = size %>% fct_reorder(serv_size_m_l),
+                    product_name = str_to_title(product_name)) # Convert all first letters to capital letters. To capitalize sentences, use str_to_sentence()
              
 cup_sizes <- starbucks %>%
              select(size, serv_size_m_l) %>% 
@@ -51,18 +54,16 @@ cup_sizes <- starbucks %>%
                     y_possition = 650) %>% 
              ungroup()
 
-cup_stain <- tibble(img = "./2021/2021_Week_052/Images/coffee_cup_stain.png")
-cup_stain2 <- tibble(img = "./2021/2021_Week_052/Images/coffee_stain.png")
-
-starbucks <- starbucks %>%
-             left_join(cup_sizes, by = "size") %>% 
-             mutate(size = size %>% fct_reorder(serv_size_m_l),
-                    product_name = str_to_title(product_name)) 
+stain <-  tibble(img = c("./2021/2021_Week_052/Images/coffee_cup_stain.png","./2021/2021_Week_052/Images/coffee_stain.png"),
+                   x = c(700, 0),
+                   y = c(400, 600),
+                size = c(0.25, 0.15))
 
 # Calculate quantile
-quantile(starbucks$caffeine_mg, probs = seq(.1, .9, by = .1))
-quantile(starbucks$calories, probs = seq(.1, .9, by = .1))
-        
+Caffeine_T10 <- quantile(starbucks$caffeine_mg, probs = .9)[[1]]
+Calories_T10 <- quantile(starbucks$calories, probs = .9)[[1]]
+
+
 #### Plot aesthetics ####
 background     <- "#F2F2F2"
 lines_color    <- "#BFBFBD"
@@ -71,23 +72,25 @@ subtitle_color <- "#395938"
 text_color     <- "#395938"
 caption_color  <- "#2D402C"
 color_palette  <- met.brewer(name="Signac", n=14, type="discrete")[c(9,3,11,12,13)]
+Caffeine_T10_rect <- met.brewer(name="Signac", n=14, type="discrete")[1]
+Calories_T10_rect <- met.brewer(name="Signac", n=14, type="discrete")[4]
 
 
 #### Annotation ####
 annotation_title_text <- c("Starbucks")
 annotation_subtitle_text <- c("What type of coffee are you looking for today?")
 
+
 #### Plot ####
 Plot <- starbucks %>% 
         ggplot(aes(x = calories, y = caffeine_mg, size = serv_size_m_l, fill = size)) +
-        annotate(geom = "rect", xmin = -Inf, xmax = 390, ymin = 249, ymax = Inf, fill = "#F2E205", alpha = 0.1) +
-        annotate(geom = "rect", xmin = 390, xmax = 830, ymin = -Inf, ymax = 249, fill = "#FC0D0D", alpha = 0.1) +
+        annotate(geom = "rect", xmin = -Inf, xmax = Calories_T10, ymin = Caffeine_T10, ymax = Inf, fill = Caffeine_T10_rect, alpha = 0.2) +
+        annotate(geom = "rect", xmin = Calories_T10, xmax = 830, ymin = -Inf, ymax = Caffeine_T10, fill = Calories_T10_rect, alpha = 0.1) +
         geom_point(shape = 21, color = "white") +
         ### Annotations ###
-        geom_image(data = cup_stain, aes(x = 700, y = 400, image = img), size = 0.25, asp = 1.8, inherit.aes = FALSE) +
-        geom_image(data = cup_stain2, aes(x = 0, y = 600, image = img), size = 0.15, asp = 1.8, inherit.aes = FALSE) +
-        geom_image(aes(x = x_possition, y = y_possition, image = img, color = size), size = unique(cup_sizes$img_size), stat = "unique", asp = 1.5) +
-        geom_text(aes(x = x_possition, y = y_possition - 50, label = label, color = size), size = 5, family = "Oooh Baby") +
+        geom_image(data = stain, aes(x = x, y = y, image = img), size=stain$size, asp = 1.8, inherit.aes = FALSE) +
+        geom_image(data = cup_sizes, aes(x = x_possition, y = y_possition, image = img, color = size), size = unique(cup_sizes$img_size), asp = 1.5, inherit.aes = FALSE) +
+        geom_text(data = cup_sizes, aes(x = x_possition, y = y_possition - 50, label = label, color = size), size = 5, family = "Oooh Baby", inherit.aes = FALSE) +
         ### Text Annotations ###
         geom_text(data = starbucks %>% filter(calories >= 550 | caffeine_mg >= 400), aes(x = calories, y = caffeine_mg + case_when(product_name %in% c("Java Chip Frappuccino Blended","Brewed Coffee - Medium Roast") ~ -10, product_name == "Brewed Coffee - True North Blend Blonde Roast" ~ 20, T ~ 0), label = product_name, color = size), size = 5, family = "Oooh Baby", nudge_x = 10, hjust = 0) +
         geom_text(aes(x = 380, y = 400, label = "Top 10% Caffeine Drinks"), color = "#735724", size = 4, family = "Montserrat", inherit.aes = FALSE, angle = 270) +
@@ -144,6 +147,7 @@ Plot <- starbucks %>%
              caption = "<span style='font-family: \"Font Awesome 5 Brands\"'>&#xf099;</span> @TamayoLeiva_J<br>
                               <span style='font-family: \"Font Awesome 5 Brands\"'>&#xf09b;</span> TamayoLeivaJ<br><br> 
                               Source: Starbucks Coffee Company Beverage Nutrition Information & PythonCoderUnicorn <br>")
+
 
 #### Progress ####
 ggsave("./2021/2021_Week_052/Plots/2021_Week_052.png", Plot, dpi = 700, scale = 1, width = 12, height = 10, units = c("in"))
