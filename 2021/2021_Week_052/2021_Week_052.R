@@ -26,7 +26,7 @@ starbucks <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/
 
 
 #### Data wrangling #### 
-##### Top cricket countries and their streaks
+##### Calories or Caffeine
 starbucks <- starbucks %>% 
              filter(serv_size_m_l != 0 & size %in% c("short","tall","grande","venti","trenta")) %>%
              filter(calories != 0 & caffeine_mg != 0) %>%
