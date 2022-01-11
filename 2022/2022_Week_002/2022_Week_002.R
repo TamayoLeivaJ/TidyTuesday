@@ -1,6 +1,6 @@
 #### (TidyTuesday - 2022 - Week 02) #### 
 #### ----------------------------------------------------------------------------------------- ####
-## Starbucks drinks
+## Bee Colony losses
 ###  Week     Date	           Data	                    Source	                   Article
 ###  - 02     - 2022-01-11	   - Bee Colony losses	    - USDA	                   - Bee Informed
 
@@ -107,7 +107,7 @@ Plot <- df %>%
              subtitle = annotation_subtitle_text,
              caption = "<span style='font-family: \"Font Awesome 5 Brands\"'>&#xf099;</span> @TamayoLeiva_J<br>
                               <span style='font-family: \"Font Awesome 5 Brands\"'>&#xf09b;</span> TamayoLeivaJ<br><br> 
-                              Source: Starbucks Coffee Company Beverage Nutrition Information & PythonCoderUnicorn <br>")
+                              Source: USDA")
 
 
 #### Progress ####
