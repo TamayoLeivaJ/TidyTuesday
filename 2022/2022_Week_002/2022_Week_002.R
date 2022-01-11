@@ -28,7 +28,9 @@ stressor <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/t
 
 #### Data wrangling #### 
 ##### Bees
-
+colony <- colony %>% 
+          mutate(colony_lost_pct = -colony_lost_pct) %>% 
+          pivot_longer(names_to = "colony_pct", cols = c(colony_lost_pct, colony_reno_pct), values_to = "pct")
 
 
 
@@ -49,9 +51,9 @@ annotation_subtitle_text <- c("What the bee?")
 
 
 #### Plot ####
-Plot <- df %>% 
-        ggplot(aes(x = x, y = y, size = size, fill = size)) +
-        geom_point(shape = 21, color = "white") +
+Plot <- colony %>% 
+        ggplot(aes(x = year, y = pct, fill = colony_pct)) +
+        geom_point(shape = 21, color = "white", position = position_jitter(seed = 707)) +
         ### Annotations ###
         geom_text() +
         ### Text Annotations ###
