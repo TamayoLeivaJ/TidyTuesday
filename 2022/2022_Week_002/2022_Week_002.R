@@ -64,7 +64,7 @@ bees <-  tibble(img = c("./2022/2022_Week_002/Images/bee_left.png","./2022/2022_
 #### Plot aesthetics ####
 background     <- "#FFFFFF"
 lines_color    <- "#BFBFBD"
-title_color    <- "#F2A413"
+title_color    <- "#58555A"
 subtitle_color <- "#58595B"
 text_color     <- "#012E40"
 caption_color  <- "#2D402C"
@@ -72,7 +72,7 @@ color_palette  <- c("#110066","#549DA6","#038ABF","#F21B1B","#BF9004","#58555A")
 
 
 #### Annotation ####
-annotation_title_text <- c("Honey bee colonies lost in the USA states")
+annotation_title_text <- c("Loss of honey bee colonies in the U.S.")
 annotation_subtitle_text <- c("The Varroa mite is an external parasite that attacks and feeds on honey bees *Apis cerana* and *Apis mellifera*. The Varroa mite can only reproduce in a honey bee colony, and the disease caused by the mite is called varroosis. During infection, the parasitic mite attaches itself to the bee's body and weakens it by sucking out the fat bodies. The Varroa mite has the greatest negative impact among honey bee colonies in the U.S. state and worldwide. Since 2015 and through 2021, Varroa mite have affected about 30% of honey bee colonies in U.S. states, and although efforts have been made to renew honey bee colonies, lost colonies in U.S. states shows higher mean values (50th percentile) than renovated colonies, even when some states show outliers.")
 annotation_subtitle_text <- str_wrap(annotation_subtitle_text, 68) %>% str_replace_all("\n","<br>") # Helps to separate long texts into lines with the same maximum number of characters
 annotation_subtitle_text <- annotation_subtitle_text %>% 
@@ -102,8 +102,8 @@ theme_set(theme_classic() +
             plot.background = element_rect(fill = background, color = NA),
             ## Titles & Caption ##
             plot.title.position = "panel",
-            plot.title = element_markdown(color = title_color, family = "Anton", face = "plain", size = 24, hjust = 0.93),
-            plot.subtitle = element_markdown(color = subtitle_color, family = "Alegreya Sans", face = "plain", size = 14, hjust = 0.9, halign = 0.5, margin = margin(t = 0.0, r = 0.0, b = 3.0, l = 0.0, unit = "cm")),
+            plot.title = element_markdown(color = title_color, family = "Anton", face = "plain", size = 24, hjust = 0.90, halign = 0.5),
+            plot.subtitle = element_markdown(color = subtitle_color, family = "Alegreya Sans", face = "plain", size = 14, hjust = 0.90, halign = 0.5, margin = margin(t = 0.0, r = 0.0, b = 3.0, l = 0.0, unit = "cm")),
             plot.caption.position = "plot",
             plot.caption = element_markdown(color = caption_color, family = "Menlo", hjust = 1, halign = 1, size = 9, margin = margin(t = 0.5, r = 0.1, b = 0.1, l = 0.0, unit = "cm")),
             ## Margin ##
