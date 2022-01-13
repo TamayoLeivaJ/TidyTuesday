@@ -41,6 +41,7 @@ colonies <- colony %>%
             filter(!is.na(pct) & state != "United States") %>% 
             ungroup()
 
+
 stressor_USA <- stressor %>% 
                 filter(!is.na(stress_pct) & state != "United States") %>% 
                 group_by(year, stressor) %>% 
@@ -51,7 +52,6 @@ stressor_USA <- stressor %>%
                 ungroup()
                   
                 
-
 bees <-  tibble(img = c("./2022/2022_Week_002/Images/bee_left.png","./2022/2022_Week_002/Images/bee_right.png"),
                 colony_pct = c("colony_lost_pct","colony_reno_pct"),
                 label = c("Lost\nColonies","Renovated\nColonies"),
@@ -73,7 +73,7 @@ color_palette  <- c("#110066","#549DA6","#038ABF","#F21B1B","#BF9004","#58555A")
 
 #### Annotation ####
 annotation_title_text <- c("Loss of honey bee colonies in the U.S.")
-annotation_subtitle_text <- c("The Varroa mite is an external parasite that attacks and feeds on honey bees *Apis cerana* and *Apis mellifera*. The Varroa mite can only reproduce in a honey bee colony, and the disease caused by the mite is called varroosis. During infection, the parasitic mite attaches itself to the bee's body and weakens it by sucking out the fat bodies. The Varroa mite has the greatest negative impact among honey bee colonies in the U.S. state and worldwide. Since 2015 and through 2021, Varroa mite have affected about 30% of honey bee colonies in U.S. states, and although efforts have been made to renew honey bee colonies, lost colonies in U.S. states shows higher mean values (50th percentile) than renovated colonies, even when some states show outliers.")
+annotation_subtitle_text <- c("The Varroa mite is an external parasite that attacks and feeds on honey bees *Apis cerana* and *Apis mellifera*. The Varroa mite can only reproduce in a honey bee colony, and the disease caused by the mite is called varroosis. During infection, the parasitic mite attaches itself to the bee's body and weakens it by sucking out the fat bodies. The Varroa mite has the greatest negative impact among honey bee colonies in the U.S. state and worldwide. Since 2015 and through 2021, Varroa mite have affected about 30% of honey bee colonies in U.S. states, and although efforts have been made to renew honey bee colonies, lost colonies in U.S. states shows higher median values (50th percentile) than renovated colonies, even when some states show outliers.")
 annotation_subtitle_text <- str_wrap(annotation_subtitle_text, 68) %>% str_replace_all("\n","<br>") # Helps to separate long texts into lines with the same maximum number of characters
 annotation_subtitle_text <- annotation_subtitle_text %>% 
                             str_replace_all("Varroa mite","<b><i style='color:#110066'>Varroa mite</i></b>") %>% 
