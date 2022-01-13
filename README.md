@@ -69,3 +69,10 @@ Contributions to the #TidyTuesday
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_052/Plots/2021_Week_052.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_052/Plots/2021_Week_052.png)
 
 [R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_052/2021_Week_052.R)
+
+## 2022
+### Week 002
+#### Bee Colony losses :bee:
+![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_002/Plots/2022_Week_002.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_002/Plots/2022_Week_002.png)
+
+[R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_002/2022_Week_002.R)
