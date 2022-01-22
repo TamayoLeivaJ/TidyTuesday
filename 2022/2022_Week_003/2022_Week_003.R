@@ -62,7 +62,7 @@ color_palette  <- met.brewer("Cross", 6)
 
 #### Annotation ####
 annotation_title_text <- c("Good chocolate beans come<br>from many places")
-annotation_subtitle_text <- c("Only countries of origin of the bean with an<br>median value >3.2 and at least 10 evaluations are shown.")
+annotation_subtitle_text <- c("Only countries of origin of chocolate beans with an<br>median rating value >3.2 and at least 10 evaluations are shown.")
 
 
 #### Plot ####
