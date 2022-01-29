@@ -192,14 +192,14 @@ Plot1 <- details_board_ratings_main_plot %>% filter(owned < 70830) %>%
          geom_text(x = 5.5, y = 120000, label = "120K owned", size = 4.5, color = "#F2E205", family = "Acme") +
          geom_text(x = 6.0, y = 160000, label = "160K owned", size = 4.5, color = "#F2E205", family = "Acme") +
          geom_text(x = 7.5, y = 190000, label = "Top Board Games", size = 5.5, color = "#F2E205", family = "Bangers") +
+         geom_text(x = 7.5, y = -12000, label = "Board Game Average Rating 1-10", size = 5.5, color = "#F2E205", family = "Bangers") +
          geom_text(x = 1.5, y = 200000, label = "Board Game Mechanic\n(Number of games)", size = 6.0, color = "#F25C05", family = "Bangers") +
          geom_text(x = 1.5, y = 25000, label = "Board Game Category\n(Number of games)", size = 6.0, color = "#05F2DB", family = "Bangers") +
          ### Scales ###
          scale_x_continuous(breaks = c(1, seq(2.5, 10, 2.5))) +
          coord_cartesian(xlim = c(-1, 10), clip = 'off', expand = FALSE) +
-         ### Labels ###
-         labs(x = "Average Rating\n1-10",
-              y = "")
+         ### Theme ###
+         theme(axis.text.x = element_text(size = 14, color = "#F2E205", family = "Bangers", margin = margin(t = 0.5, r = 0.0, b = 0.0, l = 0.0, unit = "cm")))
 
 ##### Plot 4 #####
 Plot4 <- details_board_ratings_grid_plot %>%
@@ -284,9 +284,8 @@ Plot <-
                     plot.title = element_markdown(color = title_color, family = "Bangers", face = "plain", size = 30, hjust = 0.50, halign = 0.7),
                     plot.subtitle = element_markdown(color = subtitle_color, family = "Bangers", face = "plain", size = 18, hjust = 0.5, halign = 0.7, margin = margin(t = 0.0, r = 0.0, b = 0.0, l = 0.0, unit = "cm")),
                     plot.caption.position = "plot",
-                    plot.caption = element_markdown(color = caption_color, family = "Menlo", hjust = 1, halign = 1, size = 12, margin = margin(t = 0.5, r = -1.0, b = 0.1, l = 0.0, unit = "cm")),
+                    plot.caption = element_markdown(color = caption_color, family = "Menlo", hjust = 1, halign = 1, size = 12, margin = margin(t = -0.2, r = -1.0, b = 0.5, l = 0.0, unit = "cm")),
                     ## Margin ##
-                    plot.margin = margin(t = 0.5, r = 2.0, b = 0.5, l = -2.0, unit = "cm")))
-
+                    plot.margin = margin(t = 0.5, r = 2.0, b = 0.0, l = -2.0, unit = "cm"))) # When working with patchwork, the axes (text and titles) can be modified a lot, and it is necessary to adjust the margins (even using negative values) according to the case, in order to keep the correct position. 
 #### Progress ####
 ggsave("./2022/2022_Week_004/Plots/2022_Week_004.png", Plot, dpi = 326, scale = 1, width = 18, height = 12, units = c("in"))
