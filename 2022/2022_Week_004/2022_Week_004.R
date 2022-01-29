@@ -146,7 +146,9 @@ annotation_title_text <- c("What Board Games do you most enjoy playing?")
 annotation_subtitle_text <- c("Do the most popular board games (top 25) belong to the most common categories and mechanics among board games?")
 annotation_subtitle_text <- str_wrap(annotation_subtitle_text, 60) %>% str_replace_all("\n","<br>") # Helps to separate long texts into lines with the same maximum number of characters
 annotation_subtitle_text <- annotation_subtitle_text %>% 
-                            str_replace_all("common","<span class='text-nowrap'><p>common") %>% 
+                            str_replace_all("Do the most","<span class='text-nowrap'>Do the most") %>%
+                            str_replace_all("top 25","<p style='color:#F2E205'>Top 25</p>") %>% 
+                            str_replace_all("most<br>common","most</span><br><span class='text-nowrap'><p>common") %>% 
                             str_replace_all("categories","<p style='color:#05F2DB'>Categories</p>") %>% 
                             str_replace_all("mechanics among board games\\?","<p style='color:#F25C05'>Mechanics</p> among board games?</p></span>") 
 #### Plots ####
@@ -189,6 +191,7 @@ Plot1 <- details_board_ratings_main_plot %>% filter(owned < 70830) %>%
          geom_text(x = 5.0, y = 100000, label = "100K owned", size = 4.5, color = "#F2E205", family = "Acme") +
          geom_text(x = 5.5, y = 120000, label = "120K owned", size = 4.5, color = "#F2E205", family = "Acme") +
          geom_text(x = 6.0, y = 160000, label = "160K owned", size = 4.5, color = "#F2E205", family = "Acme") +
+         geom_text(x = 7.5, y = 190000, label = "Top Board Games", size = 5.5, color = "#F2E205", family = "Bangers") +
          geom_text(x = 1.5, y = 200000, label = "Board Game Mechanic\n(Number of games)", size = 6.0, color = "#F25C05", family = "Bangers") +
          geom_text(x = 1.5, y = 25000, label = "Board Game Category\n(Number of games)", size = 6.0, color = "#05F2DB", family = "Bangers") +
          ### Scales ###
@@ -211,6 +214,8 @@ Plot4 <- details_board_ratings_grid_plot %>%
          coord_cartesian(clip = 'off', expand = TRUE) +
          ### Theme ###
          theme(## Axis ##
+           axis.title.x = element_text(size = 14, family = "Bangers", color = text_color, margin = margin(t = 0.2, r = 0.0, b = 0.5, l = 0.0, unit = "cm")),
+           axis.title.y = element_text(size = 14, family = "Bangers", color = text_color, angle = 270),
            axis.text.y = element_text(size = 12, family = "Bangers", color = text_color),
            axis.text.x = element_text(size = 12, family = "Bangers", color = text_color, angle = 90, hjust = 0),
            axis.ticks.x = element_blank(),
@@ -221,8 +226,8 @@ Plot4 <- details_board_ratings_grid_plot %>%
            panel.background = element_rect(fill = "transparent", color = NA),
            plot.background = element_rect(fill = "transparent", color = NA)) +
          ### Labels ###
-         labs(x = "",
-              y = "")
+         labs(x = "Top Board Games Mechanics & Categories",
+              y = "Top 25 Board Games")
 
 ###### Theme Plot 2, 3 ######
 theme_set(theme_void() +
