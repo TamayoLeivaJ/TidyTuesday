@@ -2,7 +2,7 @@
 #### ----------------------------------------------------------------------------------------- ####
 ## Chocolate Bar ratings
 ###  Week     Date	           Data	                    Source	                   Article
-###  - 02     - 2022-01-18	   - Chocolate Bar ratings	- Flavors of Cacao	       - Will Canniford on Kaggle
+###  - 03     - 2022-01-18	   - Chocolate Bar ratings	- Flavors of Cacao	       - Will Canniford on Kaggle
 
 #### set up ####
 #### Libraries (Base) ####
@@ -13,8 +13,6 @@ library(ggtext)
 library(systemfonts)
 
 #### Libraries (Plot) ####
-library(png)
-library(ggimage)
 library(ggdist)
 library(MetBrewer)
 

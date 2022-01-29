@@ -82,3 +82,9 @@ Contributions to the #TidyTuesday
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_003/Plots/2022_Week_003.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_003/Plots/2022_Week_003.png)
 
 [R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_003/2022_Week_003.R)
+
+### Week 004
+#### Board games :game_die:
+![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_004/Plots/2022_Week_004.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_004/Plots/2022_Week_004.png)
+
+[R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_004/2022_Week_004.R)
