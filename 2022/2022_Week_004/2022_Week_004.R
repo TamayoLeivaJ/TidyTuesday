@@ -1,4 +1,4 @@
-#### (TidyTuesday - 2022 - Week 03) #### 
+#### (TidyTuesday - 2022 - Week 04) #### 
 #### ----------------------------------------------------------------------------------------- ####
 ## Board games
 ###  Week     Date	           Data	                    Source	                   Article
@@ -287,5 +287,6 @@ Plot <-
                     plot.caption = element_markdown(color = caption_color, family = "Menlo", hjust = 1, halign = 1, size = 12, margin = margin(t = -0.2, r = -1.0, b = 0.5, l = 0.0, unit = "cm")),
                     ## Margin ##
                     plot.margin = margin(t = 0.5, r = 2.0, b = 0.0, l = -2.0, unit = "cm"))) # When working with patchwork, the axes (text and titles) can be modified a lot, and it is necessary to adjust the margins (even using negative values) according to the case, in order to keep the correct position. 
+
 #### Progress ####
 ggsave("./2022/2022_Week_004/Plots/2022_Week_004.png", Plot, dpi = 326, scale = 1, width = 18, height = 12, units = c("in"))
