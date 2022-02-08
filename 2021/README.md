@@ -1,7 +1,7 @@
 # TidyTuesday
 Contributions to the #TidyTuesday
 
-#### Contributions by years
+#### All contributions by year
 - [2021](https://github.com/TamayoLeivaJ/TidyTuesday/tree/gh-pages/2021)
 - [2022](https://github.com/TamayoLeivaJ/TidyTuesday/tree/gh-pages/2022)
 
