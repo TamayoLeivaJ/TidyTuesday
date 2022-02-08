@@ -1,5 +1,9 @@
 # TidyTuesday
-Contributions to the #TidyTuesday 2022
+Contributions to the #TidyTuesday
+
+### Contributions by years
+[2021](https://github.com/TamayoLeivaJ/TidyTuesday/tree/gh-pages/2021)
+[2022](https://github.com/TamayoLeivaJ/TidyTuesday/tree/gh-pages/2022)
 
 ## 2022
 
@@ -27,6 +31,6 @@ Contributions to the #TidyTuesday 2022
 
 [R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_002/2022_Week_002.R)
 
-## Contributions by years
-[2021](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)
-[2022](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)
+### Contributions by years
+[2021](https://github.com/TamayoLeivaJ/TidyTuesday/tree/gh-pages/2021)
+[2022](https://github.com/TamayoLeivaJ/TidyTuesday/tree/gh-pages/2022)
