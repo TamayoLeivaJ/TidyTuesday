@@ -1,12 +1,7 @@
 # TidyTuesday
-Contributions to the #TidyTuesday
-
-#### All contributions by year
-- [2021](https://github.com/TamayoLeivaJ/TidyTuesday/tree/gh-pages/2021)
-- [2022](https://github.com/TamayoLeivaJ/TidyTuesday/tree/gh-pages/2022)
+All contributions to the #TidyTuesday 2022
 
 ## 2022
-
 ### Week 005
 #### Dog breeds :poodle::dog2:
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_005/Plots/2022_Week_005.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_005/Plots/2022_Week_005.png)
@@ -31,6 +26,5 @@ Contributions to the #TidyTuesday
 
 [R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_002/2022_Week_002.R)
 
-### Contributions by years
-[2021](https://github.com/TamayoLeivaJ/TidyTuesday/tree/gh-pages/2021)
-[2022](https://github.com/TamayoLeivaJ/TidyTuesday/tree/gh-pages/2022)
+## All contributions from other years
+### [2021](2021)
