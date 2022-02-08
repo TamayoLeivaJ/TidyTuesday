@@ -1,9 +1,9 @@
 # TidyTuesday
 Contributions to the #TidyTuesday
 
-### Contributions by years
-[2021](https://github.com/TamayoLeivaJ/TidyTuesday/tree/gh-pages/2021)
-[2022](https://github.com/TamayoLeivaJ/TidyTuesday/tree/gh-pages/2022)
+#### Contributions by years
+- [2021](https://github.com/TamayoLeivaJ/TidyTuesday/tree/gh-pages/2021)
+- [2022](https://github.com/TamayoLeivaJ/TidyTuesday/tree/gh-pages/2022)
 
 ## 2021
 ### Week 052
