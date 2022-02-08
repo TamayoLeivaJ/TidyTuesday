@@ -5,7 +5,7 @@ Contributions to the #TidyTuesday
 ### [2021](2021) | [2022](2022)
 
 ## Selection
-## 2022
+## [2022](2022)
 ### Week 005
 #### Dog breeds :poodle::dog2:
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_005/Plots/2022_Week_005.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_005/Plots/2022_Week_005.png)
@@ -30,7 +30,7 @@ Contributions to the #TidyTuesday
 
 [R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_002/2022_Week_002.R)
 
-## Selected 2021
+## [2021](2021)
 ### Week 052
 #### Starbucks drinks :coffee:
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_052/Plots/2021_Week_052.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_052/Plots/2021_Week_052.png)
