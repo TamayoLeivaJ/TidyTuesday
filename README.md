@@ -1,15 +1,15 @@
-# TidyTuesday Contributions
+# TidyTuesday
 
 [#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md) is a project aimed at the R-RStudio ecosystem where a new dataset is delivered weekly. The project emerged as a collaborative idea from the R4DS Online Learning Community and the [R for Data Science](https://r4ds.had.co.nz) textbook, and connected through the  **#RStats** community, as an exercise to exercise the understanding of how to manipulate and organize data to make graphs with {[tidyverse](https://www.tidyverse.org)} tools such as {[ggplot2](https://ggplot2.tidyverse.org)}, {[tidyr](https://tidyr.tidyverse.org)}, {[dplyr](https://dplyr.tidyverse.org)}.
 
-## All contributions by year
-<div align="center">
-### [2021](2021) | [2022](2022)
-</div>
+## All contributions to TidyTuesday by year
+<h2 style="font-weight:normal" align="center"> 
+[2021](2021) | [2022](2022)
+</h2>
 
-<div align="center">
-## Selection [2022](2022)
-</div>
+<h2 style="font-weight:normal" align="center"> 
+Selection TidyTuesday [2022](2022)
+</h2>
 
 ### Week 005
 #### Dog breeds :poodle::dog2:
@@ -35,9 +35,9 @@
 
 [R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_002/2022_Week_002.R)
 
-<div align="center">
-## Selection [2021](2021)
-</div>
+<h2 style="font-weight:normal" align="center"> 
+Selection TidyTuesday [2021](2021)
+</h2>
 
 ### Week 052
 #### Starbucks drinks :coffee:
