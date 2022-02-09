@@ -1,13 +1,16 @@
-# TidyTuesday
-Contributions to the #TidyTuesday 
+# TidyTuesday Contributions
 
-[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md) is a project aimed at the R-RStudio ecosystem where a new dataset is delivered weekly. The project emerged as a collaborative idea from the R4DS Online Learning Community and the [R for Data Science](https://r4ds.had.co.nz) textbook, and connected through the  **#RStats** community, as an exercise to exercise the understanding of how to manipulate and organize data to make graphs with {[tidyverse](https://www.tidyverse.org)} tools such as {[ggplot2](https://ggplot2.tidyverse.org)}, {[tidyr](https://tidyr.tidyverse.org)}, {[dplyr](https://dplyr.tidyverse.org)}
+[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md) is a project aimed at the R-RStudio ecosystem where a new dataset is delivered weekly. The project emerged as a collaborative idea from the R4DS Online Learning Community and the [R for Data Science](https://r4ds.had.co.nz) textbook, and connected through the  **#RStats** community, as an exercise to exercise the understanding of how to manipulate and organize data to make graphs with {[tidyverse](https://www.tidyverse.org)} tools such as {[ggplot2](https://ggplot2.tidyverse.org)}, {[tidyr](https://tidyr.tidyverse.org)}, {[dplyr](https://dplyr.tidyverse.org)}.
 
 ## All contributions by year
+<div align="center">
 ### [2021](2021) | [2022](2022)
+</div>
 
-## Selection
-## [2022](2022)
+<div align="center">
+## Selection [2022](2022)
+</div>
+
 ### Week 005
 #### Dog breeds :poodle::dog2:
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_005/Plots/2022_Week_005.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_005/Plots/2022_Week_005.png)
@@ -32,7 +35,10 @@ Contributions to the #TidyTuesday
 
 [R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_002/2022_Week_002.R)
 
-## [2021](2021)
+<div align="center">
+## Selection [2021](2021)
+</div>
+
 ### Week 052
 #### Starbucks drinks :coffee:
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_052/Plots/2021_Week_052.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_052/Plots/2021_Week_052.png)
