@@ -6,6 +6,12 @@
 ### [2021](2021) | [2022](2022)
 
 ## Selection [2022](2022)
+### Week 012
+#### Baby names :baby:
+![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_012/Plots/2022_Week_012.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_012/Plots/2022_Week_012.png)
+
+[R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_012/2022_Week_012.R)
+
 ### Week 006
 #### Tuskegee Airmen :medal_military:
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_006/Plots/2022_Week_006.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_006/Plots/2022_Week_006.png)
