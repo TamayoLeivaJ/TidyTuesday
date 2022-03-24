@@ -86,7 +86,7 @@ Plot <- Names  %>%
         geom_text(data = data.frame(x = 0, y = c(0.25, 0.5, 0.75, 1), label = c("25%","50%","75%","100%")), aes(x=x, y=y, label=label), size = rep(c(1.5, 1.8, 2, 2.2),26), color = text_color, family = "Ranga", fontface='bold', inherit.aes = FALSE) +
         geom_segment(data = data.frame(y = -0.1), aes(x = 2, xend = 19, y = y, yend = y), linetype="solid", color = lines_color, size = 0.05, arrow = arrow(length = unit(0.05, "cm")), inherit.aes = FALSE) +
         geom_text(data = data.frame(x = c(1,20), y = -0.1), aes(x=x, y=y, label=x), size = 2, color = text_color, family = "Ranga", fontface='bold', inherit.aes = FALSE) +
-        geom_text(data = Names  %>% group_by(name) %>% slice(n = 1), aes(x = id, y = 1.17, label = if_else(id == 20, paste0("Total Count\n",Total_Count_label), as.character(Total_Count_label))), size = 1.5, alpha = 0.7, color = text_color, family = "Ranga", fontface='bold', inherit.aes = FALSE) +
+        geom_text(data = Names  %>% filter(id != 21) %>% group_by(name) %>% slice(n = 1), aes(x = id, y = 1.17, label = if_else(id == 20, paste0("Total Count\n",Total_Count_label), as.character(Total_Count_label))), size = 1.5, alpha = 0.7, color = text_color, family = "Ranga", fontface='bold', inherit.aes = FALSE) +
         geom_col(aes(x = id, y = prop, fill = sex)) +
         ### Annotations ###
         geom_text(data = labels, aes(x = possition, y = 0.5, label = name, hjust = hjust), color = background, family = "Ranga", fontface = "plain", size = 3.0, angle = labels$angle, inherit.aes = FALSE) + # I use conditional statements within layers such as if_else() and case_when() to assign differential values of y-axis position, alpha, size and labels to each value based on conditions.
