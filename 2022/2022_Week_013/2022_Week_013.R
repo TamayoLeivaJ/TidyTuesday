@@ -91,7 +91,7 @@ Palette <- inferno(begin = 0.1, end = 0.4, direction = -1, n=7)
 
 #### Annotation ####
 annotation_title_text <- c("Collegiate sports")
-annotation_subtitle_text <- c("For the 2019-2020 season, the colleges with the highest expenditures in sports -top 1%- invested more than 80 million each. While there are more than 30 registered sports, only 8 are played at all of these universities. Despite this sport variety, a single sport takes -by far- the largest investment, a figure even larger than all others combined. And explained by the high level of income generated")
+annotation_subtitle_text <- c("For the 2019-2020 season, the colleges with the highest expenditures in sports -top 1%- invested more than 80 million each. While there are more than 30 registered sports, only 8 are played at all of these universities. Despite this sport variety, a single sport takes -by far- the largest investment, a figure even larger than all others combined, explained by the high level of income generated.")
 annotation_subtitle_text <- str_wrap(annotation_subtitle_text, 90) %>% str_replace_all("\n","<br>")
 
 
