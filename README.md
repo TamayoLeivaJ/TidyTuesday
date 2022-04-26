@@ -3,20 +3,23 @@
 #### Table of Content
 
 * [TidyTuesday](#intro)
-* [All contributions to TidyTuesday by year](#body1)
-  - [TidyTuesday selection 2022](#body1.1)
-  - [TidyTuesday selection 2021](#body1.2)
-* [External Resources](#body2)
+* [TidyTuesday by year](#body1)
+* [TidyTuesday Selection](#body2)
+  - [Selection 2022](#body2.1)
+  - [Selection 2021](#body2.2)
+* [External Resources](#body3)
 
 
-## TidyTuesday <a name="intro"></a>
+# TidyTuesday <a name="intro"></a>
 
 [#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md) is a project aimed at the R-RStudio ecosystem where a new dataset is delivered weekly. The project emerged as a collaborative idea from the R4DS Online Learning Community and the [R for Data Science](https://r4ds.had.co.nz) textbook, and connected through the  **#RStats** community, as an exercise to exercise the understanding of how to manipulate and organize data to make graphs with {[tidyverse](https://www.tidyverse.org)} tools such as {[ggplot2](https://ggplot2.tidyverse.org)}, {[tidyr](https://tidyr.tidyverse.org)}, {[dplyr](https://dplyr.tidyverse.org)}.
 
-## All contributions to TidyTuesday by year <a name="body1"></a>
+# TidyTuesday by year <a name="body1"></a>
+## All contributions to TidyTuesday by year
 ### [2021](2021) | [2022](2022)
 
-## Selection [2022](2022) <a name="body1.1"></a>
+# Selection <a name="body2"></a>
+## Selection [2022](2022) <a name="body2.1"></a>
 ### Week 013
 #### Collegiate sports :stadium:
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_013/Plots/2022_Week_013.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_013/Plots/2022_Week_013.png)
@@ -59,7 +62,7 @@
 
 [R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_002/2022_Week_002.R)
 
-## Selection [2021](2021) <a name="body1.2"></a>
+## Selection [2021](2021) <a name="body2.2"></a>
 ### Week 052
 #### Starbucks drinks :coffee:
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_052/Plots/2021_Week_052.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_052/Plots/2021_Week_052.png)
@@ -96,5 +99,5 @@
 
 [R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_038/2021_Week_038.R)
 
-## External Resources <a name="body2"></a>
+# External Resources <a name="body3"></a>
 [#TidyTuesday Github Repo](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)
