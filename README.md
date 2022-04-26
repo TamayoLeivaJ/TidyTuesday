@@ -16,11 +16,11 @@
 
 
 ## All contributions <a name="body1"></a>
-###  TidyTuesday by year
+###  All contributions to TidyTuesday by year
 ### [2021](2021) | [2022](2022)
 
-## Selection <a name="body2"></a>
-## Selection [2022](2022) <a name="body2.1"></a>
+## Selected contributions to TidyTuesday <a name="body2"></a>
+## [2022](2022) <a name="body2.1"></a>
 ### Week 013
 #### Collegiate sports :stadium:
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_013/Plots/2022_Week_013.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_013/Plots/2022_Week_013.png)
@@ -63,7 +63,7 @@
 
 [R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_002/2022_Week_002.R)
 
-## Selection [2021](2021) <a name="body2.2"></a>
+## [2021](2021) <a name="body2.2"></a>
 ### Week 052
 #### Starbucks drinks :coffee:
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_052/Plots/2021_Week_052.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2021/2021_Week_052/Plots/2021_Week_052.png)
