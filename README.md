@@ -3,8 +3,8 @@
 #### Table of Content
 
 * [TidyTuesday](#intro)
-  * [All contributions to TidyTuesday](#body1)
-  * [Selected contributions to TidyTuesday](#body2)
+  * [Contributions to TidyTuesday](#body1)
+  * [Selected contributions](#body2)
     - [Selection 2022](#body2.1)
     - [Selection 2021](#body2.2)
 * [External Resources](#body3)
@@ -15,11 +15,17 @@
 [#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md) is a project aimed at the R-RStudio ecosystem where a new dataset is delivered weekly. The project emerged as a collaborative idea from the R4DS Online Learning Community and the [R for Data Science](https://r4ds.had.co.nz) textbook, and connected through the  **#RStats** community, as an exercise to exercise the understanding of how to manipulate and organize data to make graphs with {[tidyverse](https://www.tidyverse.org)} tools such as {[ggplot2](https://ggplot2.tidyverse.org)}, {[tidyr](https://tidyr.tidyverse.org)}, {[dplyr](https://dplyr.tidyverse.org)}.
 
 
-## All contributions <a name="body1"></a>
+## Contributions <a name="body1"></a>
+
+<br><br>
+
 ###  All contributions to TidyTuesday by year
 ### [2021](2021) | [2022](2022)
 
-## Selected contributions to TidyTuesday <a name="body2"></a>
+## Selected contributions <a name="body2"></a>
+
+<br><br>
+
 ## [2022](2022) <a name="body2.1"></a>
 ### Week 013
 #### Collegiate sports :stadium:
