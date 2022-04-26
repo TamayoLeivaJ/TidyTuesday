@@ -17,14 +17,16 @@
 
 ## Contributions <a name="body1"></a>
 
-<br><br>
+In the following links you will find all the contributions (graphics plus code) that I have made to TidyTuesday. All contributions are organized in readme files according to the year of their elaboration. <br>
 
 ###  All contributions to TidyTuesday by year
-### [2021](2021) | [2022](2022)
+
+* [2022](2022)
+* [2021](2021) 
 
 ## Selected contributions <a name="body2"></a>
 
-<br><br>
+In the following section of this readme file you will find a selection of my contributions to TidyTuesday grouped by their year of publication.<br>
 
 ## [2022](2022) <a name="body2.1"></a>
 ### Week 013
