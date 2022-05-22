@@ -140,7 +140,7 @@ Plot <- ggplot() +
              title = annotation_title_text,
              caption = "<span style='font-family: \"Font Awesome 6 Brands\"'>&#xf099;</span> @TamayoLeiva_J<br>
                         <span style='font-family: \"Font Awesome 6 Brands\"'>&#xf09b;</span>  TamayoLeivaJ<br><br> 
-                        Source: Eurovision by Tanya Shapiro | <span style='font-family: \"Font Awesome 6 Brands\"'>&#xf099;</span> @tashapiro")
+                        Source: Eurovision by Tanya Shapiro | <span style='font-family: \"Font Awesome 6 Brands\"'>&#xf09b;</span> tashapiro")
 
 
 #### Progress ####
