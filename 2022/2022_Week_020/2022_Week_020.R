@@ -65,7 +65,7 @@ ranking <- st_geometry(countries) %>%
                   subregion = fct_relevel(subregion, "Northern Europe","Eastern Europe","Western Europe","Western Asia","Southern Europe"),
                   Song_txt = if_else(subregion %in% c("Northern Europe","Western Europe","Southern Europe"), 
                                      paste0(.$song, " - ", .$artist, " | ",.$year), 
-                                     paste0(.$year," | ", .$song," - ",.$artist))) %>% 
+                                     paste0(.$year, " | ", .$song, " - ",.$artist))) %>% 
            arrange(subregion, desc(year)) %>% 
            mutate(row_n = row_number(),
                   ranking_song = normalize(rank(row_n), range = c(70, 27), method = "range")) %>%    # Ranking Year in reverse order
@@ -81,20 +81,24 @@ data_map <- rnaturalearthdata::countries50 %>%
             st_crop(xmin = -20, xmax = 48, ymin = 27, ymax = 70) %>% 
             filter(!admin %in% c("Greenland", countries$admin))
 
+labels <- tibble(subregion = c("Northern Europe","Eastern Europe","Western Europe","Western Asia","Southern Europe"),
+                 label = c("Northern Europe","Eastern Europe","Western Europe","Asia","Southern Europe"),
+                 X = c(-22,60,-22,60,-22),
+                 Y = c(72,55,52,38,34))
 
 #### Plot aesthetics ####
 background     <- "#F2F2F2"
-lines_color    <- "#3C5473"
-title_color    <- "#39054D"
-subtitle_color <- "#DB004C"
-text_color     <- "#DB004C"
+lines_color    <- ""
+title_color    <- "#4F0259"
+subtitle_color <- "#8C4272"
+text_color     <- ""
 caption_color  <- "#39054D"
-Palette <- met.brewer("Johnson", 5, type = "discrete")[c(5,2,1,3,4)]  # Viridis default color palette but avoiding deep-purple, and deep-blue
+Palette <- met.brewer("Johnson", 5, type = "discrete")[c(5,2,1,3,4)]
 
 
 #### Annotation ####
 annotation_title_text <- c("Eurovision")
-annotation_subtitle_text <- c("All time contest winners")
+annotation_subtitle_text <- c("All time contest winners (1956 - 2022)")
 
 
 #### Plot ####
@@ -107,7 +111,8 @@ Plot <- ggplot() +
         geom_sigmoid(data = ranking %>% filter(year == 1969), aes(x = xend_2, y = ranking_lat, xend = x_axis_start_2, yend = ranking_song, group = country, color = subregion), alpha = .3, smooth = 10, size = .4) + 
         ### Annotations ###
         geom_flag(data = ranking, aes(x = x_axis_start_2 + if_else(x_axis_start > 0, 1, -1), y = ranking_song, country = ctry_2_Lttrs), size = 2) +
-        geom_text(data = ranking, aes(x = x_axis_start_2 + if_else(x_axis_start > 0, 2, -2), y = ranking_song, label = Song_txt, color = subregion, hjust = if_else(x_axis_start > 0, 0, 1)), size = 2.0, nudge_x = 0, nudge_y = 0) +                                          # Song text
+        geom_text(data = ranking, aes(x = x_axis_start_2 + if_else(x_axis_start > 0, 2, -2), y = ranking_song, label = Song_txt, color = subregion, hjust = if_else(x_axis_start > 0, 0, 1)), size = 2.0, nudge_x = 0, nudge_y = 0, family = "Bebas Neu") +  # Song text
+        geom_text(data = labels, aes(x = X, y = Y, label = label, color = subregion), size = 4.0, family = "Koulen") +  # 
         ### Scales ###
         scale_color_manual(values = Palette, breaks = c("Northern Europe","Eastern Europe","Western Europe","Western Asia","Southern Europe")) +
         scale_fill_manual(values = Palette, breaks = c("Northern Europe","Eastern Europe","Western Europe","Western Asia","Southern Europe")) +
@@ -115,8 +120,6 @@ Plot <- ggplot() +
         ### Theme ###
         theme_void() +
         theme(
-          ## Text ##
-          text = element_text(face = "plain", family = "Bebas Neue", color = text_color, hjust = 0.5, vjust = 0.5, angle = 0),
           ## Legend ##
           legend.position = "none",
           ## Plot Aesthetic ##
