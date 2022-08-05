@@ -30,7 +30,7 @@ In the following section of this readme file you will find a selection of my con
 
 ## [2022](2022) <a name="body2.1"></a>
 ### Week 031
-#### :frog: Oregon Spotted Frog
+#### Oregon Spotted Frog :frog:
 ![https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_031/Plots/2022_Week_031.png](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_031/Plots/2022_Week_031.png)
 
 [R Code](https://github.com/TamayoLeivaJ/TidyTuesday/blob/gh-pages/2022/2022_Week_031/2022_Week_031.R)
