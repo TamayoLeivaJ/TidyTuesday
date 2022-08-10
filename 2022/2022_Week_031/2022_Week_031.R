@@ -12,6 +12,10 @@ library(tidyverse, quietly = TRUE)
 library(systemfonts)
 
 #### Libraries (This Plot) ####
+library(sf)
+library(osmdata)
+library(forcats)
+library(ggchicklet)
 
 
 #### Directory ####
