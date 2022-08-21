@@ -13,9 +13,13 @@ library(scales)
 library(ggtext)
 library(systemfonts)
 
+
 #### Libraries (This Plot) ####
+library(igraph)
 library(ggraph)
 library(tidygraph)
+library(ggforce)
+
 
 #### Directory ####
 # Create directory to save images and plots
@@ -28,7 +32,7 @@ psychometrics <-  readr::read_csv('https://raw.githubusercontent.com/rfordatasci
 
 
 #### Data wrangling #### 
-##### Network???
+##### Network to see similarities between GOT characters?
 ###### set seed
 set.seed(4321)
 
@@ -98,8 +102,8 @@ caption_color  <- "#6C7D8C"
 
 #### Annotation ####
 annotation_title_text <- c("Game of Thrones")
-annotation_text <- c("Open-Source Psychometrics Project, has recruited more than 3 million volunteers to rate different characters from the series according to descriptive adjectives and other properties, which can be aggregated to create profiles that users can be matched with as part of a personality test. In total the project collects information on over 2,000 characters, with 400 descriptive items with which to identify the character and how you would rate them on a scale of 1 to 100 for each one. From the dataset, the GOT characters have been selected, to investigate which characters have the strongest (ranking >80%) shared characteristics in common.")
-annotation_text <- stringr::str_wrap(annotation_text, 73) %>% 
+annotation_text <- c("The Open-Source Psychometrics Project, it has recruited more than 3 million volunteers to rate characters from different series, according to 400 descriptive adjectives and other properties. The responses can be aggregated to create profiles that users can match as part of a personality test. In total, the project collects information on more than 2,000 characters, with 400 descriptive adjectives rated on a scale of 1 to 100, depending on how strongly one would identify the character's particular characteristic. From the data set, GOT characters have been selected, to investigate which characters share the greatest number of the strongest characteristics (rating >80%) in common or similarity.")
+annotation_text <- stringr::str_wrap(annotation_text, 70) %>% 
                    stringr::str_replace_all("\n","<br>")
 
 #### Plot ####
@@ -110,7 +114,7 @@ Plot <- psycho_tg %>%
         ggraph::geom_node_point(aes(colour = links), size = log(size) * 1.0, alpha = 1.0) +
         ### Annotations ###
         ggraph::geom_node_label(aes(label = label), colour = text_color, size = log(size) * 0.60, family = "Cinzel Decorative", fontface = "bold", repel = FALSE, nudge_y = -0.04, nudge_x = 0.00, alpha = 0.6, fill = background, label.size = NA) +
-        ggtext::geom_richtext(aes(x = 1.26, y = -1.35), label = annotation_text, color = subtitle_color, size = 4, family = "Cinzel", face = "plain", fill = "transparent", label.size = NA, hjust = 0.5, halign = 0, vjust = 0.5, valign = 0.5, margin = margin(t = 0.1, r = 0.1, b = 0.5, l = 0.1, unit = "cm")) +
+        ggtext::geom_richtext(aes(x = 1.26, y = -1.33), label = annotation_text, color = subtitle_color, size = 4, family = "Cinzel", face = "plain", fill = "transparent", label.size = NA, hjust = 0.5, halign = 0, vjust = 0.5, valign = 0.5, margin = margin(t = 0.1, r = 0.1, b = 0.5, l = 0.1, unit = "cm")) +
         ### Scales ###
         ggraph::scale_edge_width_manual(values = c(seq(0.2, 1.0, length.out = 4), 2.0), breaks = c("q80","q90","q95","q99","Top1")) +
         ggraph::scale_edge_alpha_manual(values = c(seq(0.2, 0.5, length.out = 4), 0.8), breaks = c("q80","q90","q95","q99","Top1")) +
@@ -148,7 +152,7 @@ Final_Plot <- Plot +
               geom_text(data = data_label[c(1, 30),], aes(x = x, y = y + 0.002), label = c("-","+"), colour = background, alpha = 1.0, size = sort(log(size))[c(1,30)], family = "Cinzel Decorative", fontface = "bold", hjust = 0.5, vjust = 0.5) +
               geom_text(data = data_label[15,], aes(x = x, y = y + 0.100), label = "How to read the network?", colour = subtitle_color, alpha = 1.0, size = sort(log(size) * 1.5)[1], family = "Cinzel", fontface = "plain") +
               geom_text(data = data_label[15,], aes(x = x, y = y + 0.025), label = "Connections Scale", colour = text_color, alpha = 1.0, size = sort(log(size) * 0.8)[1], family = "Cinzel Decorative", fontface = "bold") +
-              geom_text(data = data_label[15,], aes(x = x, y = y - 0.025), label = "Similarity", colour = text_color, alpha = 1.0, size = sort(log(size) * 0.8)[1], family = "Cinzel Decorative", fontface = "bold") +
+              geom_text(data = data_label[15,], aes(x = x, y = y - 0.025), label = "Similarity Scale", colour = text_color, alpha = 1.0, size = sort(log(size) * 0.8)[1], family = "Cinzel Decorative", fontface = "bold") +
               scale_alpha_continuous(range = c(0.0, 1.0)) +
               scale_size_continuous(range = c(0.2, 2.0)) +
               guides(colour = "none", alpha = "none", size = "none")
