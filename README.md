@@ -26,8 +26,6 @@ In the following links you will find all the contributions (graphics plus code) 
 
 ## Selected contributions <a name="body2"></a>
 
-In the following section of this readme file you will find a selection of my contributions to TidyTuesday grouped by their year of publication.<br>
-
 ## [2022](2022) <a name="body2.1"></a>
 ### Week 033
 #### Open Source Psychometrics :movie_camera: GOT :crown:
